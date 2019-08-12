@@ -1,4 +1,4 @@
-var TelegramBot = require('node-telegram-bot-api');
+import TelegramBot from 'node-telegram-bot-api';
 
 // Устанавливаем токен, который выдавал нам бот.
 var token = '860469083:AAElj7TvrvxwtOghWazeuucmticDiLDR_38';
