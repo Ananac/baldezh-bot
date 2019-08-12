@@ -37,9 +37,15 @@ var characters = [
 
 const bot = new Telegraf("860469083:AAElj7TvrvxwtOghWazeuucmticDiLDR_38");
 bot.start(ctx => ctx.reply("Дарова!"));
-// bot.help((ctx) => ctx.reply('Ну, давай-давай, пришли стикер'))
+bot.help((ctx) => ctx.reply('Спроси "Кто я из Наруто"'))
 // bot.on('sticker', (ctx) => ctx.reply('👍'))
 bot.hears(/кто я из наруто/gi, ctx =>
   ctx.reply(characters[Math.floor(Math.random() * characters.length)])
 );
+bot.hears(/артем/gi, ctx =>
+    ctx.reply('Артем, вернись в Коноху!')
+  );
+bot.hears(/максим/gi, ctx =>
+    ctx.reply('Максим, вернись в Коноху!')
+  );
 bot.launch();
