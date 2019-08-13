@@ -48,22 +48,7 @@ bot.hears(/артем/gi, ctx => ctx.reply("Артем, вернись в Кон
 bot.hears(/максим/gi, ctx => ctx.reply("Максим, вернись в Коноху!"));
 bot.command(/дайте мем/gi, ctx =>
   ctx.replyWithPhoto({
-    url: function getUrl() {
-      https
-        .get("https://meme-api.herokuapp.com/gimme", res => {
-          console.log("statusCode:", res.statusCode);
-          console.log("headers:", res.headers);
-
-          res.on("data", d => {
-            process.stdout.write(d);
-            var obj = JSON.parse(d);
-            return console.log(obj.url);
-          });
-        })
-        .on("error", e => {
-          console.error(e);
-        });
-    }
+    url: "https://i.redd.it/nomzh7qox3g31.jpg"
   })
 );
 bot.launch();
