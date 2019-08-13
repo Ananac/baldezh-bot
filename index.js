@@ -39,9 +39,7 @@ var characters = [
 
 const bot = new Telegraf("860469083:AAElj7TvrvxwtOghWazeuucmticDiLDR_38");
 bot.start(ctx => ctx.reply("Дарова!"));
-bot.help(ctx =>
-  ctx.reply('"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем')
-);
+bot.help(ctx => ctx.reply('"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем'));
 // bot.on('sticker', (ctx) => ctx.reply('👍'))
 bot.hears(/кто я из наруто/gi, ctx =>
   ctx.reply(characters[Math.floor(Math.random() * characters.length)])
@@ -51,17 +49,19 @@ bot.hears(/максим/gi, ctx => ctx.reply("Максим, вернись в К
 bot.hears(/дайте мем/gi, ctx => ctx.replyWithPhoto(getUrl()));
 bot.launch();
 
-async function getUrl() {
-  try {
-    const { statusCode, headers, data } = await https.get(
-      "https://meme-api.herokuapp.com/gimme"
-    );
-    console.log("statusCode:", statusCode);
-    console.log("headers:", headers);
-    const obj = data ? JSON.parse(data) : null;
-    console.log(obj);
-    return obj;
-  } catch (e) {
-    console.error(e);
+function getUrl() {
+    https.get('https://meme-api.herokuapp.com/gimme', (res) => {
+        console.log('statusCode:', res.statusCode);
+        console.log('headers:', res.headers);
+      
+        res.on('data', (d) => {
+          process.stdout.write(d);
+          var obj = JSON.parse(d);
+          console.log(obj.url)
+          return obj.url
+        });
+      
+      }).on('error', (e) => {
+        console.error(e);
+      });
   }
-}
