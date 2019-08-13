@@ -55,7 +55,7 @@ bot.hears(/артем/gi, ctx => {
   try {
     today = new Date();
     const artemIsBack = new Date(2019, 7, 26);
-    var one_day = 1000 * 60 * 60 * 24;
+    const one_day = 1000 * 60 * 60 * 24;
     const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / one_day);
     ctx.reply("Артем, вернется в Коноху через " +  days + " " + pluralize(days, 'день', 'дня', 'дней'));
   } catch (e) {
@@ -63,7 +63,7 @@ bot.hears(/артем/gi, ctx => {
     ctx.reply("Что-то сломалось");
   }
 });
-bot.hears(/дайте мем/gi, ctx => {
+bot.hears(/дайте мем/gi || /тостер/, ctx => {
   try {
     https
       .get("https://meme-api.herokuapp.com/gimme/dankmemes", res => {
