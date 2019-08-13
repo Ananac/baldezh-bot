@@ -59,9 +59,9 @@ bot.hears(/дайте мем/gi, ctx => {
           process.stdout.write(d);
           var obj = JSON.parse(d);
           console.log(obj.url);
-          const memeUrl = obj.url;          
+          const memeUrl = obj.url;
           const memeTitle = obj.title;
-          ctx.replyWithPhoto({ memeUrl }, { caption: memeTitle });
+          ctx.replyWithPhoto({ url: memeUrl }, { caption: memeTitle });
         });
       })
       .on("error", e => {
