@@ -1,6 +1,6 @@
 const Telegraf = require("telegraf");
 const https = require("https");
-const pluralize = require('numeralize').pluralize;
+const pluralize = require('numeralize-ru').pluralize;
 
 var characters = [
   "Наруто Удзумаки",
