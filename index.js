@@ -91,4 +91,5 @@ bot.hears(/дайте мем/gi, ctx => {
     ctx.reply("Что-то сломалось");
   }
 });
+bot.hears(/покеда/gi, ctx => ctx.reply("До свидания"));
 bot.launch();
