@@ -57,7 +57,7 @@ bot.hears(/артем/gi, ctx => {
     const artemIsBack = new Date(today.getFullYear(), 8, 26);
     var one_day = 1000 * 60 * 60 * 24;
     const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / one_day);
-    ctx.reply("Артем, вернется в Коноху через " +  days + pluralize(day, 'день', 'дня', 'дней'));
+    ctx.reply("Артем, вернется в Коноху через " +  days + pluralize(days, 'день', 'дня', 'дней'));
   } catch (e) {
     console.error(e);
     ctx.reply("Что-то сломалось");
