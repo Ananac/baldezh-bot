@@ -51,7 +51,7 @@ bot.hears(/кто я из наруто/gi, ctx => {
     ctx.reply("Что-то сломалось");
   }
 });
-bot.command('артем', ctx => {
+bot.hears(/артем/gi, ctx => {
   try {
     today = new Date();
     const artemIsBack = new Date(2019, 7, 26);
