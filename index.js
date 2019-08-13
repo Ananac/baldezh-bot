@@ -1,6 +1,6 @@
 const Telegraf = require("telegraf");
 const https = require("https");
-const pluralize = require('numeralize-ru').pluralize;
+const pluralize = require("numeralize-ru").pluralize;
 
 var characters = [
   "Наруто Удзумаки",
@@ -51,13 +51,17 @@ bot.hears(/кто я из наруто/gi, ctx => {
     ctx.reply("Что-то сломалось");
   }
 });
-bot.hears(/артем/gi, ctx => {
+bot.command('артем', ctx => {
   try {
     today = new Date();
     const artemIsBack = new Date(2019, 7, 26);
     const one_day = 1000 * 60 * 60 * 24;
     const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / one_day);
-    ctx.reply("Артем, вернется в Коноху через " +  days + " " + pluralize(days, 'день', 'дня', 'дней'));
+    ctx.reply(
+      "Артем, вернется в Коноху через " +
+        days + " " +
+        pluralize(days, "день", "дня", "дней")
+    );
   } catch (e) {
     console.error(e);
     ctx.reply("Что-то сломалось");
