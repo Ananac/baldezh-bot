@@ -1,16 +1,8 @@
 const https = require('https');
+const pluralize = require('numeralize-ru').pluralize;
 
-
-https.get('https://meme-api.herokuapp.com/gimme', (res) => {
-  console.log('statusCode:', res.statusCode);
-  console.log('headers:', res.headers);
-
-  res.on('data', (d) => {
-    process.stdout.write(d);
-    const obj = JSON.parse(d);
-    console.log(d.url)
-  });
-
-}).on('error', (e) => {
-  console.error(e);
-});
+today = new Date();
+const artemIsBack = new Date(2019, 7, 26);
+var one_day = 1000 * 60 * 60 * 24;
+const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / one_day);
+console.log("Артем, вернется в Коноху через " +  days + " " + pluralize(days, 'день', 'дня', 'дней'));
