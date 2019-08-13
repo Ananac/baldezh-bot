@@ -59,7 +59,8 @@ bot.hears(/дайте мем/gi, ctx => {
           process.stdout.write(d);
           var obj = JSON.parse(d);
           console.log(obj.url);
-          ctx.replyWithPhoto(result);
+          const x = obj.url;
+          ctx.replyWithPhoto(x);
         });
       })
       .on("error", e => {
