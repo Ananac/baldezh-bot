@@ -51,7 +51,7 @@ bot.hears(/кто я из наруто/gi, ctx => {
     ctx.reply("Что-то сломалось");
   }
 });
-bot.hears(/артем/gi, ctx => {
+bot.hears(/артем/gi || /тостер/, ctx => {
   try {
     today = new Date();
     const artemIsBack = new Date(2019, 7, 26);
@@ -63,7 +63,7 @@ bot.hears(/артем/gi, ctx => {
     ctx.reply("Что-то сломалось");
   }
 });
-bot.hears(/дайте мем/gi || /тостер/, ctx => {
+bot.hears(/дайте мем/gi, ctx => {
   try {
     https
       .get("https://meme-api.herokuapp.com/gimme/dankmemes", res => {
