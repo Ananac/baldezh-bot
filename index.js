@@ -51,7 +51,7 @@ bot.hears(/максим/gi, ctx => ctx.reply("Максим, вернись в К
 bot.hears(/дайте мем/gi, ctx =>
   ctx.replyWithPhoto(
     getUrl(function(id) {
-      console.log(id);
+      id;
     })
   )
 );
