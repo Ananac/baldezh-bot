@@ -60,7 +60,7 @@ function getUrl() {
       res.on("data", d => {
         process.stdout.write(d);
         var obj = JSON.parse(d);
-        console.log(obj.url);
+        return console.log(obj.url);
       });
     })
     .on("error", e => {
