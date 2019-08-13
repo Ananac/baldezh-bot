@@ -47,5 +47,5 @@ bot.hears(/кто я из наруто/gi, ctx =>
 bot.hears(/артем/gi, ctx => ctx.reply("Артем, вернись в Коноху!"));
 bot.hears(/максим/gi, ctx => ctx.reply("Максим, вернись в Коноху!"));
 bot.hears(/алло/gi, ctx => ctx.reply("Максим, вернись в Коноху!"));
-bot.command(/дайте мем/gi, ctx => ctx.replyWithPhoto('https://i.redd.it/nomzh7qox3g31.jpg'));
+bot.command('мем', ctx => ctx.replyWithPhoto('https://sun9-33.userapi.com/c635106/v635106307/2ec59/O_jtiJus3hI.jpg'));
 bot.launch();
