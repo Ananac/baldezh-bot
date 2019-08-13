@@ -46,6 +46,24 @@ bot.hears(/кто я из наруто/gi, ctx =>
 );
 bot.hears(/артем/gi, ctx => ctx.reply("Артем, вернись в Коноху!"));
 bot.hears(/максим/gi, ctx => ctx.reply("Максим, вернись в Коноху!"));
-bot.hears(/алло/gi, ctx => ctx.reply("Максим, вернись в Коноху!"));
-bot.command('мем', ctx => ctx.replyWithPhoto('https://sun9-33.userapi.com/c635106/v635106307/2ec59/O_jtiJus3hI.jpg'));
+bot.hears(/дайте мем/gi, ctx =>
+  ctx.replyWithPhoto({
+    url: function getUrl() {
+      https
+        .get("https://meme-api.herokuapp.com/gimme", res => {
+          console.log("statusCode:", res.statusCode);
+          console.log("headers:", res.headers);
+
+          res.on("data", d => {
+            process.stdout.write(d);
+            var obj = JSON.parse(d);
+            return console.log(obj.url);
+          });
+        })
+        .on("error", e => {
+          console.error(e);
+        });
+    }
+  })
+);
 bot.launch();
