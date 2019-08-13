@@ -48,31 +48,26 @@ bot.hears(/кто я из наруто/gi, ctx =>
 );
 bot.hears(/артем/gi, ctx => ctx.reply("Артем, вернись в Коноху!"));
 bot.hears(/максим/gi, ctx => ctx.reply("Максим, вернись в Коноху!"));
-bot.hears(/дайте мем/gi, async (ctx) => {
-    try {
-      const result = await getUrl(function(id){id});
-      ctx.replyWithPhoto(result);
-    } catch (e) {
-      console.error(e);
-      ctx.reply('Что-то сломалось');
-    }
-  });
-bot.launch();
+bot.hears(/дайте мем/gi, ctx => {
+  try {
+    https
+      .get("https://meme-api.herokuapp.com/gimme", res => {
+        console.log("statusCode:", res.statusCode);
+        console.log("headers:", res.headers);
 
-function getUrl(cb) {
-  https
-    .get("https://meme-api.herokuapp.com/gimme", res => {
-      console.log("statusCode:", res.statusCode);
-      console.log("headers:", res.headers);
-
-      res.on("data", d => {
-        process.stdout.write(d);
-        var obj = JSON.parse(d);
-        console.log(obj.url);
-        return cb(obj.url);
+        res.on("data", d => {
+          process.stdout.write(d);
+          var obj = JSON.parse(d);
+          console.log(obj.url);
+          ctx.replyWithPhoto(result);
+        });
+      })
+      .on("error", e => {
+        console.error(e);
       });
-    })
-    .on("error", e => {
-      console.error(e);
-    });
-}
+  } catch (e) {
+    console.error(e);
+    ctx.reply("Что-то сломалось");
+  }
+});
+bot.launch();
