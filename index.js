@@ -48,13 +48,15 @@ bot.hears(/кто я из наруто/gi, ctx =>
 );
 bot.hears(/артем/gi, ctx => ctx.reply("Артем, вернись в Коноху!"));
 bot.hears(/максим/gi, ctx => ctx.reply("Максим, вернись в Коноху!"));
-bot.hears(/дайте мем/gi, ctx =>
-  ctx.replyWithPhoto(
-    getUrl(function(id) {
-      id;
-    })
-  )
-);
+bot.hears(/дайте мем/gi, async (ctx) => {
+    try {
+      const result = await storage.getUrl(id);
+      ctx.replyWithPhoto(result);
+    } catch (e) {
+      console.error(e);
+      ctx.reply('Что-то сломалось');
+    }
+  });
 bot.launch();
 
 function getUrl(cb) {
