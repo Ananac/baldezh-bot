@@ -50,7 +50,7 @@ bot.hears(/артем/gi, ctx => ctx.reply("Артем, вернись в Кон
 bot.hears(/максим/gi, ctx => ctx.reply("Максим, вернись в Коноху!"));
 bot.hears(/дайте мем/gi, async (ctx) => {
     try {
-      const result = await storage.getUrl(id);
+      const result = await getUrl(id);
       ctx.replyWithPhoto(result);
     } catch (e) {
       console.error(e);
