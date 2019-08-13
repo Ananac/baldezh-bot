@@ -46,12 +46,12 @@ bot.hears(/кто я из наруто/gi, ctx =>
 );
 bot.hears(/артем/gi, ctx => ctx.reply("Артем, вернись в Коноху!"));
 bot.hears(/максим/gi, ctx => ctx.reply("Максим, вернись в Коноху!"));
-bot.hears(/дайте мем/gi, ctx => ctx.replyWithPhoto({ url: getUrl() }));
+bot.hears(/дайте мем/gi, ctx => ctx.replyWithPhoto('https://i.redd.it/h6y166v0u2g31.jpg'));
 bot.launch();
 
 async function getUrl() {
     try {
-      const res = await https.get('https://meme-api.herokuapp.com/gimme');
+      const res = await https.get('https://meme-api.herokuapp.com/gimme/');
       console.log('statusCode:', res.statusCode);
       console.log('headers:', res.headers);
   
