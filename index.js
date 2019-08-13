@@ -37,10 +37,10 @@ var characters = [
   "Ирука Умино"
 ];
 
-const bot = new Telegraf("860469083:AAElj7TvrvxwtOghWazeuucmticDiLDR_38");
-bot.start(ctx => ctx.reply("Дарова!"));
+const bot = new Telegraf('860469083:AAElj7TvrvxwtOghWazeuucmticDiLDR_38');
+bot.start(ctx => ctx.reply('Дарова!'));
 bot.help(ctx =>
-  ctx.reply('"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем')
+  ctx.reply('"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем из /dankmemes')
 );
 // bot.on('sticker', (ctx) => ctx.reply('👍'))
 bot.hears(/кто я из наруто/gi, ctx =>
@@ -50,8 +50,7 @@ bot.hears(/артем/gi, ctx => ctx.reply("Артем, вернись в Кон
 bot.hears(/максим/gi, ctx => ctx.reply("Максим, вернись в Коноху!"));
 bot.hears(/дайте мем/gi, ctx => {
   try {
-    https
-      .get("https://meme-api.herokuapp.com/gimme", res => {
+    https.get("https://meme-api.herokuapp.com/gimme/dankmemes", res => {
         console.log("statusCode:", res.statusCode);
         console.log("headers:", res.headers);
 
