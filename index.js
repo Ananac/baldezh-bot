@@ -61,7 +61,7 @@ bot.hears(/дайте мем/gi, ctx => {
           console.log(obj.url);
           const memeUrl = obj.url;          
           const memeTitle = obj.title;
-          ctx.replyWithPhoto({ memeUrl }, { caption: obj.memeTitle });
+          ctx.replyWithPhoto({ memeUrl }, { caption: memeTitle });
         });
       })
       .on("error", e => {
