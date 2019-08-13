@@ -1,5 +1,6 @@
 const Telegraf = require("telegraf");
 const https = require("https");
+const pluralize = require('numeralize').pluralize;
 
 var characters = [
   "Наруто Удзумаки",
@@ -38,20 +39,30 @@ bot.help(ctx =>
     '"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем из /dankmemes'
   )
 );
-// bot.on('sticker', (ctx) => ctx.reply('👍'))
-
 bot.hears(/кто я из наруто/gi, ctx => {
   try {
     const characterNum = Math.floor(Math.random() * characters.length);
-    ctx.replyWithPhoto({ source: `${__dirname}/img/${characterNum}.jpg` }, { caption: characters[characterNum] });
+    ctx.replyWithPhoto(
+      { source: `${__dirname}/img/${characterNum}.jpg` },
+      { caption: characters[characterNum] }
+    );
   } catch (e) {
     console.error(e);
     ctx.reply("Что-то сломалось");
   }
 });
-
-bot.hears(/артем/gi, ctx => ctx.reply("Артем, вернись в Коноху!"));
-bot.hears(/максим/gi, ctx => ctx.reply("Максим, вернись в Коноху!"));
+bot.hears(/артем/gi, ctx => {
+  try {
+    today = new Date();
+    const artemIsBack = new Date(today.getFullYear(), 8, 26);
+    var one_day = 1000 * 60 * 60 * 24;
+    const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / one_day);
+    ctx.reply("Артем, вернется в Коноху через " +  days + pluralize(day, 'день', 'дня', 'дней'));
+  } catch (e) {
+    console.error(e);
+    ctx.reply("Что-то сломалось");
+  }
+});
 bot.hears(/дайте мем/gi, ctx => {
   try {
     https
