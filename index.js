@@ -101,7 +101,7 @@ bot.command('ud', ({ reply }) => {
     
       res.on("data", function(chunk) {
         console.log("BODY: " + chunk);
-        ctx.reply(chunk);
+        reply(chunk);
       });
     })
     .on("error", e => {
