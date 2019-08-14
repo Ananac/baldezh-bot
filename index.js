@@ -77,7 +77,6 @@ bot.hears(/дайте мем/gi, ctx => {
         res.on("data", d => {
           process.stdout.write(d);
           var obj = JSON.parse(d);
-          console.log(obj.url);
           const memeUrl = obj.url;
           const memeTitle = obj.title;
           ctx.replyWithPhoto({ url: memeUrl }, { caption: memeTitle });
@@ -92,4 +91,5 @@ bot.hears(/дайте мем/gi, ctx => {
   }
 });
 bot.hears(/покеда/gi, ctx => ctx.reply("До свидания"));
+bot.command('modern', ({ reply }) => reply('Yo'))
 bot.launch();
