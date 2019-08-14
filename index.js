@@ -1,5 +1,6 @@
 const Telegraf = require("telegraf");
 const https = require("https");
+const http = require("http");
 const pluralize = require("numeralize-ru").pluralize;
 
 var characters = [
@@ -91,5 +92,24 @@ bot.hears(/дайте мем/gi, ctx => {
   }
 });
 bot.hears(/покеда/gi, ctx => ctx.reply("До свидания"));
-bot.command('modern', ({ reply }) => reply('Yo'))
+bot.command('ud', ({ reply }) => {
+  try {
+    http
+    .get(`http://api.urbandictionary.com/v0/define?term=322`, res => {
+      console.log("statusCode:", res.statusCode);
+      console.log("headers:", res.headers);
+    
+      res.on("data", function(chunk) {
+        console.log("BODY: " + chunk);
+        ctx.reply(chunk);
+      });
+    })
+    .on("error", e => {
+      console.error(e);
+    });
+} catch (e) {
+  console.error(e);
+  ctx.reply("Что-то сломалось");
+}
+});
 bot.launch();

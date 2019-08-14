@@ -1,8 +1,14 @@
-const https = require('https');
-const pluralize = require('numeralize-ru').pluralize;
+const http = require('http');
 
-today = new Date();
-const artemIsBack = new Date(2019, 7, 26);
-var one_day = 1000 * 60 * 60 * 24;
-const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / one_day);
-console.log("Артем, вернется в Коноху через " +  days + " " + pluralize(days, 'день', 'дня', 'дней'));
+http
+.get(`http://api.urbandictionary.com/v0/define?term=322`, res => {
+  console.log("statusCode:", res.statusCode);
+  console.log("headers:", res.headers);
+
+  res.on("data", function(chunk) {
+    console.log("BODY: " + chunk);
+  });
+})
+.on("error", e => {
+  console.error(e);
+});
