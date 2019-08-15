@@ -40,10 +40,17 @@ const characters = [
 ];
 
 const bot = new Telegraf("860469083:AAElj7TvrvxwtOghWazeuucmticDiLDR_38");
+bot.use((ctx, next) => {
+  const start = new Date()
+  return next(ctx).then(() => {
+    const ms = new Date() - start
+    console.log('Response time %sms', ms)
+  })
+})
 bot.start(ctx => ctx.reply("Дарова!"));
 bot.help(ctx =>
   ctx.reply(
-    '"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем из /dankmemes'
+    '"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем из /dankmemes\n Айти - рандомный коммент с ebanoe.it'
   )
 );
 
@@ -125,7 +132,6 @@ bot.hears(/айти/i, ctx => {
       cloudscraper(options).then(html => {
         let $ = cheerio.load(html);
         const links = $(".comment-body p");
-
         $(links).each(function(i, link) {
           const comment = $(this)
             .contents()
