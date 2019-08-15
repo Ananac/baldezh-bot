@@ -99,7 +99,7 @@ bot.hears(/дайте мем/gi, ctx => {
   }
 });
 
-bot.hears(/дай/gi, ctx => {
+bot.hears(/айти/i, ctx => {
   try {
     const options = {
       method: "GET",
