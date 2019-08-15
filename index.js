@@ -1,7 +1,11 @@
 const Telegraf = require("telegraf");
 const https = require("https");
 const pluralize = require("numeralize-ru").pluralize;
-const cloudscraper = require("cloudscraper");
+const cloudscraper = require('cloudscraper').defaults({
+  agentOptions: {
+    ciphers: 'ECDHE-ECDSA-AES128-GCM-SHA256'
+  }
+})
 const cheerio = require("cheerio");
 
 var characters = [

@@ -8,7 +8,6 @@ const options = {
 
 cloudscraper(options).then(html => {
   let $ = cheerio.load(html);
-
   console.log(
     $("#div-comment-299239")
       .contents()
