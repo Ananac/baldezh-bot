@@ -1,12 +1,13 @@
 const Telegraf = require("telegraf");
 const https = require("https");
+const cheerio = require("cheerio");
 const pluralize = require("numeralize-ru").pluralize;
 const cloudscraper = require('cloudscraper').defaults({
   agentOptions: {
     ciphers: 'ECDHE-ECDSA-AES128-GCM-SHA256'
   }
 })
-const cheerio = require("cheerio");
+
 
 var characters = [
   "Наруто Удзумаки",
@@ -104,15 +105,47 @@ bot.hears(/дай/gi, ctx => {
       url: "https://ebanoe.it/2019/08/15/voxel-worlds-review-2/"
     };
     
-    cloudscraper(options).then(html => {
-      let $ = cheerio.load(html);
-      ctx.reply(
-        $("#div-comment-299239")
-          .contents()
-          .eq(2)
-          .text()
-      );
+    var scrape = function(callback) {
+      cloudscraper(options).then(html => {
+        let $ = cheerio.load(html);
+        const links = $(".comment-body p");
+    
+        $(links).each(function(i, link) {
+          var sop = $(this)
+            .contents()
+            .text();
+          if ((sop !== "") & (sop !== undefined)) {
+            pag[i] = sop;
+          }
+        });
+        if (callback) callback();
+      });
+    };
+    
+    scrape(function() {
+      // for (var i = 0; i < pag.length; i++) {
+      //   console.log(i + ": " + pag[i]);
+      // }
+      const x = Math.floor(Math.random() * pag.length);
+      console.log("x = " + x);
+      if ((pag[x] === undefined) | (pag[x] === "")) {
+        console.log("Empty comment");
+        fi();
+      } else {
+        ctx.reply(pag[x]);
+      }
     });
+    
+    const fi = function() {
+      const x = Math.floor(Math.random() * pag.length);
+      console.log("x = " + x);
+      if ((pag[x] === undefined) | (pag[x] === "")) {
+        console.log("Empty comment");
+        fi();
+      } else {
+        ctx.reply(pag[x]);
+      }
+    };
   } catch (e) {
     console.error(e);
     ctx.reply("Что-то сломалось");
