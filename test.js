@@ -1,14 +1,18 @@
-const http = require('http');
+const cloudscraper = require("cloudscraper");
+const cheerio = require("cheerio");
 
-http
-.get(`http://api.urbandictionary.com/v0/define?term=322`, res => {
-  console.log("statusCode:", res.statusCode);
-  console.log("headers:", res.headers);
+const options = {
+  method: "GET",
+  url: "https://ebanoe.it/2019/08/15/voxel-worlds-review-2/"
+};
 
-  res.on("data", function(chunk) {
-    console.log("BODY: " + chunk);
-  });
-})
-.on("error", e => {
-  console.error(e);
+cloudscraper(options).then(html => {
+  let $ = cheerio.load(html);
+
+  console.log(
+    $("#div-comment-299239")
+      .contents()
+      .eq(2)
+      .text()
+  );
 });

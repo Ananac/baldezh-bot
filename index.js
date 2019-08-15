@@ -1,7 +1,8 @@
 const Telegraf = require("telegraf");
 const https = require("https");
-const http = require("http");
 const pluralize = require("numeralize-ru").pluralize;
+const cloudscraper = require("cloudscraper");
+const cheerio = require("cheerio");
 
 var characters = [
   "Наруто Удзумаки",
@@ -91,25 +92,27 @@ bot.hears(/дайте мем/gi, ctx => {
     ctx.reply("Что-то сломалось");
   }
 });
-bot.hears(/покеда/gi, ctx => ctx.reply("До свидания"));
-bot.command('ud', ({ reply }) => {
+
+bot.hears(/дай/gi, ctx => {
   try {
-    http
-    .get(`http://api.urbandictionary.com/v0/define?term=322`, res => {
-      console.log("statusCode:", res.statusCode);
-      console.log("headers:", res.headers);
+    const options = {
+      method: "GET",
+      url: "https://ebanoe.it/2019/08/15/voxel-worlds-review-2/"
+    };
     
-      res.on("data", function(chunk) {
-        console.log("BODY: " + chunk);
-        reply(chunk);
-      });
-    })
-    .on("error", e => {
-      console.error(e);
+    cloudscraper(options).then(html => {
+      let $ = cheerio.load(html);
+      ctx.reply(
+        $("#div-comment-299239")
+          .contents()
+          .eq(2)
+          .text()
+      );
     });
-} catch (e) {
-  console.error(e);
-  ctx.reply("Что-то сломалось");
-}
+  } catch (e) {
+    console.error(e);
+    ctx.reply("Что-то сломалось");
+  }
 });
+bot.hears(/покеда/gi, ctx => ctx.reply("До свидания"));
 bot.launch();
