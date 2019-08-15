@@ -7,9 +7,10 @@ const cloudscraper = require('cloudscraper').defaults({
     ciphers: 'ECDHE-ECDSA-AES128-GCM-SHA256'
   }
 })
+const pag = [];
 
 
-var characters = [
+const characters = [
   "Наруто Удзумаки",
   "Саске Учиха",
   "Сакура Харуно",
@@ -83,7 +84,7 @@ bot.hears(/дайте мем/gi, ctx => {
 
         res.on("data", d => {
           process.stdout.write(d);
-          var obj = JSON.parse(d);
+          const obj = JSON.parse(d);
           const memeUrl = obj.url;
           const memeTitle = obj.title;
           ctx.replyWithPhoto({ url: memeUrl }, { caption: memeTitle });
@@ -105,13 +106,13 @@ bot.hears(/дай/gi, ctx => {
       url: "https://ebanoe.it/2019/08/15/voxel-worlds-review-2/"
     };
     
-    var scrape = function(callback) {
+    const scrape = function(callback) {
       cloudscraper(options).then(html => {
         let $ = cheerio.load(html);
         const links = $(".comment-body p");
     
         $(links).each(function(i, link) {
-          var sop = $(this)
+          const sop = $(this)
             .contents()
             .text();
           if ((sop !== "") & (sop !== undefined)) {
@@ -123,7 +124,7 @@ bot.hears(/дай/gi, ctx => {
     };
     
     scrape(function() {
-      // for (var i = 0; i < pag.length; i++) {
+      // for (const i = 0; i < pag.length; i++) {
       //   console.log(i + ": " + pag[i]);
       // }
       const x = Math.floor(Math.random() * pag.length);
