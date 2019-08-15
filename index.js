@@ -2,13 +2,12 @@ const Telegraf = require("telegraf");
 const https = require("https");
 const cheerio = require("cheerio");
 const pluralize = require("numeralize-ru").pluralize;
-const cloudscraper = require('cloudscraper').defaults({
+const cloudscraper = require("cloudscraper").defaults({
   agentOptions: {
-    ciphers: 'ECDHE-ECDSA-AES128-GCM-SHA256'
+    ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256"
   }
-})
-const pag = [];
-
+});
+const comments = [];
 
 const characters = [
   "Наруто Удзумаки",
@@ -47,6 +46,10 @@ bot.help(ctx =>
     '"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем из /dankmemes'
   )
 );
+
+/**
+ * Who are you from Naruto
+ */
 bot.hears(/кто я из наруто/gi, ctx => {
   try {
     const characterNum = Math.floor(Math.random() * characters.length);
@@ -59,6 +62,10 @@ bot.hears(/кто я из наруто/gi, ctx => {
     ctx.reply("Что-то сломалось");
   }
 });
+
+/**
+ * Artem's vacation ends in..
+ */
 bot.hears(/артем/gi, ctx => {
   try {
     today = new Date();
@@ -67,7 +74,8 @@ bot.hears(/артем/gi, ctx => {
     const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / one_day);
     ctx.reply(
       "Артем, вернется в Коноху через " +
-        days + " " +
+        days +
+        " " +
         pluralize(days, "день", "дня", "дней")
     );
   } catch (e) {
@@ -75,6 +83,10 @@ bot.hears(/артем/gi, ctx => {
     ctx.reply("Что-то сломалось");
   }
 });
+
+/**
+ * Random meme from r/dankmemes/
+ */
 bot.hears(/дайте мем/gi, ctx => {
   try {
     https
@@ -99,52 +111,44 @@ bot.hears(/дайте мем/gi, ctx => {
   }
 });
 
+/**
+ * Random comment from ebanoe.it
+ */
 bot.hears(/айти/i, ctx => {
   try {
     const options = {
       method: "GET",
       url: "https://ebanoe.it/2019/08/10/model-dev/"
     };
-    
+
     const scrape = function(callback) {
       cloudscraper(options).then(html => {
         let $ = cheerio.load(html);
         const links = $(".comment-body p");
-    
+
         $(links).each(function(i, link) {
-          const sop = $(this)
+          const comment = $(this)
             .contents()
             .text();
-          if ((sop !== "") & (sop !== undefined)) {
-            pag[i] = sop;
+          if ((comment !== "") & (comment !== undefined)) {
+            comments[i] = comment;
           }
         });
         if (callback) callback();
       });
     };
-    
+
     scrape(function() {
-      // for (const i = 0; i < pag.length; i++) {
-      //   console.log(i + ": " + pag[i]);
-      // }
-      const x = Math.floor(Math.random() * pag.length);
-      console.log("x = " + x);
-      if ((pag[x] === undefined) | (pag[x] === "")) {
-        console.log("Empty comment");
-        fi();
-      } else {
-        ctx.reply(pag[x]);
-      }
+      randomComment();
     });
-    
-    const fi = function() {
-      const x = Math.floor(Math.random() * pag.length);
-      console.log("x = " + x);
-      if ((pag[x] === undefined) | (pag[x] === "")) {
-        console.log("Empty comment");
-        fi();
+
+    const randomComment = function() {
+      const x = Math.floor(Math.random() * comments.length);
+      if ((comments[x] === undefined) | (comments[x] === "")) {
+        console.log("Empty comment, randomming new...");
+        randomComment();
       } else {
-        ctx.reply(pag[x]);
+        ctx.reply(comments[x]);
       }
     };
   } catch (e) {
@@ -152,5 +156,9 @@ bot.hears(/айти/i, ctx => {
     ctx.reply("Что-то сломалось");
   }
 });
+
+/**
+ * Say goodbye
+ */
 bot.hears(/покеда/gi, ctx => ctx.reply("До свидания"));
 bot.launch();

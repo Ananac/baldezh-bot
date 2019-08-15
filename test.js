@@ -25,25 +25,15 @@ var scrape = function(callback) {
 };
 
 scrape(function() {
-  // for (var i = 0; i < pag.length; i++) {
-  //   console.log(i + ": " + pag[i]);
-  // }
-  const x = Math.floor(Math.random() * pag.length);
-  console.log("x = " + x);
-  if ((pag[x] === undefined) | (pag[x] === "")) {
-    console.log("Empty comment");
-    fi();
-  } else {
-    console.log(pag[x]);
-  }
+  randomComment();
 });
 
-const fi = function() {
+const randomComment = function() {
   const x = Math.floor(Math.random() * pag.length);
   console.log("x = " + x);
   if ((pag[x] === undefined) | (pag[x] === "")) {
     console.log("Empty comment");
-    fi();
+    randomComment();
   } else {
     console.log(pag[x]);
   }
