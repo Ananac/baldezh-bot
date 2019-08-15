@@ -103,7 +103,7 @@ bot.hears(/айти/i, ctx => {
   try {
     const options = {
       method: "GET",
-      url: "https://ebanoe.it/2019/08/15/voxel-worlds-review-2/"
+      url: "https://ebanoe.it/2019/08/10/model-dev/"
     };
     
     const scrape = function(callback) {
