@@ -41,16 +41,16 @@ const characters = [
 
 const bot = new Telegraf("860469083:AAElj7TvrvxwtOghWazeuucmticDiLDR_38");
 bot.use((ctx, next) => {
-  const start = new Date()
+  const start = new Date();
   return next(ctx).then(() => {
-    const ms = new Date() - start
-    console.log('Response time %sms', ms)
-  })
-})
+    const ms = new Date() - start;
+    console.log("Response time %sms", ms);
+  });
+});
 bot.start(ctx => ctx.reply("Дарова!"));
 bot.help(ctx =>
   ctx.reply(
-    '"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем из /dankmemes\n Айти - рандомный коммент с ebanoe.it'
+    '"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем из /dankmemes\n"Айти" - рандомный коммент с ebanoe.it'
   )
 );
 
@@ -125,7 +125,7 @@ bot.hears(/айти/i, ctx => {
   try {
     const options = {
       method: "GET",
-      url: "https://ebanoe.it/2019/08/10/model-dev/"
+      url: "https://ebanoe.it/2019/08/09/girl-married-to-the-job/"
     };
 
     const scrape = function(callback) {
@@ -136,7 +136,7 @@ bot.hears(/айти/i, ctx => {
           const comment = $(this)
             .contents()
             .text();
-          if ((comment !== "") & (comment !== undefined)) {
+          if ((comment !== undefined) & (comment !== "")) {
             comments[i] = comment;
           }
         });
