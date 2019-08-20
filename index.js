@@ -125,7 +125,7 @@ bot.hears(/айти/i, ctx => {
   try {
     const options = {
       method: "GET",
-      url: "https://ebanoe.it/2019/07/21/working-in-a-bank/"
+      url: "https://ebanoe.it/2019/08/16/lgbt-in-it/"
     };
 
     const scrape = function(callback) {
