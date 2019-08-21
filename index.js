@@ -10,7 +10,7 @@ const cloudscraper = require("cloudscraper").defaults({
 const comments = [];
 
 const characters = [
-  "Наруто Удзумаки",
+  "",
   "Саске Учиха",
   "Сакура Харуно",
   "Какаши Хатаке",
@@ -36,7 +36,8 @@ const characters = [
   "Чоуджи Акимичи",
   "Шикамару Нара",
   "Шино Абураме",
-  "Ты Пидор"
+  "Ты Пидор",
+  "Наруто Удзумаки"
 ];
 
 const bot = new Telegraf("860469083:AAElj7TvrvxwtOghWazeuucmticDiLDR_38");
@@ -50,7 +51,7 @@ bot.use((ctx, next) => {
 bot.start(ctx => ctx.reply("Дарова!"));
 bot.help(ctx =>
   ctx.reply(
-    '"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем из /dankmemes\n"Айти" - рандомный коммент с ebanoe.it'
+    '"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем из /r/dankmemes\n"Айти" - рандомный коммент с ebanoe.it'
   )
 );
 
@@ -145,7 +146,7 @@ bot.hears(/айти/i, ctx => {
     };
 
     scrape(function() {
-      randomComment();
+      randomComment();  
     });
 
     const randomComment = function() {
@@ -171,5 +172,5 @@ bot.hears(/покеда/gi, ctx => ctx.reply("До свидания"));
 /**
  * Quakoosha
  */
-bot.hears(/Quakoosha/gi, ctx => ctx.replyWithSticker ('CAADBAADQAADL9_4CQr9fwscIkInFgQ'));
+bot.hears(/Quakoosha/gi, ctx => ctx.replyWithSticker('CAADBAADQAADL9_4CQr9fwscIkInFgQ'));
 bot.launch();
