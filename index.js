@@ -81,7 +81,7 @@ bot.hears(/артем/gi, ctx => {
     const one_day = 1000 * 60 * 60 * 24;
     const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / one_day);
     ctx.reply(
-      "Артем, вернется в Коноху через " +
+      "Артем вернется в Коноху через " +
         days +
         " " +
         pluralize(days, "день", "дня", "дней")
