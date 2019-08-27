@@ -74,7 +74,7 @@ bot.hears(/кто я из наруто/gi, ctx => {
 /**
  * Artem's vacation ends in..
  */
-bot.hears(/артем/gi, ctx => {
+bot.hears(/артом/gi, ctx => {
   try {
     today = new Date();
     const artemIsBack = new Date(2019, 7, 26);
