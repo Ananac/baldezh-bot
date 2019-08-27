@@ -126,7 +126,7 @@ bot.hears(/айти/i, ctx => {
   try {
     const options = {
       method: "GET",
-      url: "https://ebanoe.it/2019/07/11/dont-fire-me-please/"
+      url: "https://ebanoe.it/2019/07/31/flexdev-trick/"
     };
 
     const scrape = function(callback) {
