@@ -16,11 +16,13 @@ const options = {
       var sop = $(this).find(".bbc_img").attr('src');   
       if ((sop !== "") & (sop !== undefined) & (sop !== /prodota/gi)) {
         pag[i] = sop;
-        console.log(sop);
+        console.log(sop);        
+    console.log(pag.length);
       }
     });})
 
     console.log("voooot" + pag[4]);
+    console.log(pag.length);
 
 // scrape(function() {
 //   randomComment();

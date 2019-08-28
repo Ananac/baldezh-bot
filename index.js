@@ -208,6 +208,7 @@ bot.hears(/пд/i, ctx => {
           if ((sop !== "") & (sop !== undefined) & (sop !== /prodota/gi)) {
             pag[i] = sop;
             console.log(sop);
+            console.log(pag.lenght);
           }
         });
         if (callback) callback();
@@ -219,7 +220,7 @@ bot.hears(/пд/i, ctx => {
     });
 
     const randomComment = function() {
-      const x = Math.floor(Math.random() * 10);
+      const x = Math.floor(Math.random() * pag.length);
       console.log("x = " + x);
       if ((pag[x] === undefined) | (pag[x] === "") | (pag[x] === /prodota/gi)) {
         console.log("Empty comment");
