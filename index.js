@@ -4,9 +4,8 @@ const cheerio = require("cheerio");
 const pluralize = require("numeralize-ru").pluralize;
 const cloudscraper = require("cloudscraper");
 
-
 let comments = [];
-let pag = [];
+let pdMemes = [];
 
 const characters = [
   "",
@@ -58,6 +57,7 @@ bot.help(ctx =>
  * Who are you from Naruto
  */
 bot.hears(/кто я из наруто/gi, ctx => {
+  console.log('кто я из наруто');
   try {
     const characterNum = Math.floor(Math.random() * characters.length);
     ctx.replyWithPhoto(
@@ -74,6 +74,7 @@ bot.hears(/кто я из наруто/gi, ctx => {
  * Artem's vacation ends in..
  */
 bot.hears(/артом/gi, ctx => {
+  console.log('артом');
   try {
     today = new Date();
     const artemIsBack = new Date(2019, 7, 26);
@@ -95,6 +96,7 @@ bot.hears(/артом/gi, ctx => {
  * Random meme from r/dankmemes/
  */
 bot.hears(/дайте мем/gi, ctx => {
+  console.log('дайте мем');
   try {
     https
       .get("https://meme-api.herokuapp.com/gimme/dankmemes", res => {
@@ -122,6 +124,7 @@ bot.hears(/дайте мем/gi, ctx => {
  * Random meme from prodota
  */
 bot.hears(/пд/i, ctx => {
+  console.log('пд');
   try {
     const scrape = function(callback) {
       let page = Math.floor(Math.random() * 502);
@@ -134,13 +137,17 @@ bot.hears(/пд/i, ctx => {
         const links = $(".post.entry-content span");
 
         $(links).each(function(i, link) {
-          const sop = $(this)
+          const pdMemeUrl = $(this)
             .find(".bbc_img")
             .attr("src");
-          if ((sop !== "") & (sop !== undefined) & (sop !== /prodota/gi)) {
-            pag[i] = sop;
-            console.log(sop);
-            console.log(pag.lenght);
+          if (
+            (pdMemeUrl !== "") &
+            (pdMemeUrl !== undefined) &
+            (pdMemeUrl !== /prodota/gi)
+          ) {
+            pdMemes[i] = pdMemeUrl;
+            console.log(pdMemeUrl);
+            console.log(pdMemes.lenght);
           }
         });
         if (callback) callback();
@@ -152,9 +159,9 @@ bot.hears(/пд/i, ctx => {
     });
 
     const randomComment = function() {
-      const x = Math.floor(Math.random() * pag.length);
+      const x = Math.floor(Math.random() * pdMemes.length);
       console.log("x = " + x);
-        ctx.replyWithPhoto({ url: pag[x] });      
+      ctx.replyWithPhoto({ url: pdMemes[x] });
     };
   } catch (e) {
     console.error(e);
@@ -167,6 +174,7 @@ bot.hears(/пд/i, ctx => {
  * Random comment from ebanoe.it
  */
 bot.hears(/айти/i, ctx => {
+  console.log('айти');
   const cloudscraperSsl = require("cloudscraper").defaults({
     agentOptions: {
       ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256"
