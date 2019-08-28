@@ -125,7 +125,7 @@ bot.hears(/дайте мем/gi, ctx => {
 /**
  * Random comment from ebanoe.it
  */
-bot.hears(/айти/i, ctx => {
+bot.hears(/'айти'/i, ctx => {
   try {
     const options = {
       method: "GET",
