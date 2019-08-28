@@ -196,7 +196,7 @@ bot.hears(/пд/i, ctx => {
     const scrape = function(callback) {
       cloudscraper(options).then(html => {
         let $ = cheerio.load(html);
-        const links = $(".post.entry-content");
+        const links = $('span');
 
         $(links).each(function(i, link) {
           var sop = $(this)

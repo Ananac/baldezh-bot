@@ -7,10 +7,9 @@ const options = {
   url: "https://prodota.ru/forum/index.php?showtopic=207546&page=60"
 };
 
-const scrape = function(callback) {
   cloudscraper(options).then(html => {
     let $ = cheerio.load(html);
-    const links = $(".post.entry-content");
+    const links = $('span');
 
     $(links).each(function(i, link) {
       var sop = $(this).find('.bbc_img').attr('src');   
@@ -18,22 +17,19 @@ const scrape = function(callback) {
         pag[i] = sop;
         console.log(sop);
       }
-    });
-    if (callback) callback();
-  });
-};
+    });})
 
-scrape(function() {
-  randomComment();
-});
+// scrape(function() {
+//   randomComment();
+// });
 
-const randomComment = function() {
-  const x = Math.floor(Math.random() * pag.length);
-  console.log("x = " + x);
-  if ((pag[x] === undefined) | (pag[x] === "") | (pag[x] === /prodota/gi)) {
-    console.log("Empty comment");
-    randomComment();
-  } else {
-    console.log(pag[x]);
-  }
-};
+// const randomComment = function() {
+//   const x = Math.floor(Math.random() * pag.length);
+//   console.log("x = " + x);
+//   if ((pag[x] === undefined) | (pag[x] === "") | (pag[x] === /prodota/gi)) {
+//     console.log("Empty comment");
+//     randomComment();
+//   } else {
+//     console.log(pag[x]);
+//   }
+// };
