@@ -2,17 +2,18 @@ const cloudscraper = require("cloudscraper");
 const cheerio = require("cheerio");
 var pag = [];
 
+const page = Math.floor(Math.random() * 502);
 const options = {
   method: "GET",
-  url: "https://prodota.ru/forum/index.php?showtopic=207546&page=60"
+  url: `https://prodota.ru/forum/index.php?showtopic=207546&page=${page}`
 };
 
   cloudscraper(options).then(html => {
     let $ = cheerio.load(html);
-    const links = $('span');
+    const links = $('.post.entry-content span');
 
     $(links).each(function(i, link) {
-      var sop = $(this).find('.bbc_img').attr('src');   
+      var sop = $(this).find(".bbc_img").attr('src');   
       if ((sop !== "") & (sop !== undefined) & (sop !== /prodota/gi)) {
         pag[i] = sop;
         console.log(sop);

@@ -2,7 +2,13 @@ const Telegraf = require("telegraf");
 const https = require("https");
 const cheerio = require("cheerio");
 const pluralize = require("numeralize-ru").pluralize;
-const cloudscraper = require("cloudscraper")
+const cloudscraper = require("cloudscraper");
+const cloudscraperSsl = require("cloudscraper").defaults({
+  agentOptions: {
+    ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256"
+  }
+});
+
 const comments = [];
 const pag = [];
 
@@ -127,7 +133,7 @@ bot.hears(/айти/i, ctx => {
     };
 
     const scrape = function(callback) {
-      cloudscraper(options).then(html => {
+      cloudscraperSsl(options).then(html => {
         let $ = cheerio.load(html);
         const links = $(".comment-body");
         $(links).each(function(i, link) {
@@ -194,12 +200,10 @@ bot.hears(/пд/i, ctx => {
     const scrape = function(callback) {
       cloudscraper(options).then(html => {
         let $ = cheerio.load(html);
-        const links = $('span');
-
+        const links = $('.post.entry-content span');
+    
         $(links).each(function(i, link) {
-          var sop = $(this)
-            .find(".bbc_img")
-            .attr("src");
+          var sop = $(this).find(".bbc_img").attr('src');   
           if ((sop !== "") & (sop !== undefined) & (sop !== /prodota/gi)) {
             pag[i] = sop;
             console.log(sop);
