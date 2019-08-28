@@ -20,6 +20,8 @@ const options = {
       }
     });})
 
+    console.log("voooot" + pag[4]);
+
 // scrape(function() {
 //   randomComment();
 // });
