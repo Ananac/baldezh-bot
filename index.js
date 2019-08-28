@@ -226,7 +226,6 @@ bot.hears(/пд/i, ctx => {
         console.log("Empty comment");
       } else {
         ctx.replyWithPhoto({ url: pag[x] });
-        pag = [];
       }
     };
   } catch (e) {
