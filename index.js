@@ -191,20 +191,21 @@ bot.hears("каво", ctx =>
  */
 bot.hears(/пд/i, ctx => {
   try {
-    const page = Math.floor(Math.random() * 502);
-    const options = {
-      method: "GET",
-      url: `https://prodota.ru/forum/index.php?showtopic=215780&page=${page}`
-    };
 
     const scrape = function(callback) {
+      let page = Math.floor(Math.random() * 502);
+      const options = {
+        method: "GET",
+        url: `https://prodota.ru/forum/index.php?showtopic=215780&page=${page}`
+      };
       cloudscraper(options).then(html => {
         let $ = cheerio.load(html);
-        const links = $('.post.entry-content span');
-    
+        const links = $(".post.entry-content span");
+
         $(links).each(function(i, link) {
           const sop = $(this)
-          .find(".bbc_img").attr('src');   
+            .find(".bbc_img")
+            .attr("src");
           if ((sop !== "") & (sop !== undefined) & (sop !== /prodota/gi)) {
             pag[i] = sop;
             console.log(sop);
