@@ -222,7 +222,6 @@ bot.hears(/пд/i, ctx => {
       console.log("x = " + x);
       if ((pag[x] === undefined) | (pag[x] === "") | (pag[x] === /prodota/gi)) {
         console.log("Empty comment");
-        randomComment();
       } else {
         ctx.replyWithPhoto({ url: pag[x] });
       }
