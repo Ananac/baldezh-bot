@@ -4,6 +4,7 @@ const cheerio = require("cheerio");
 const pluralize = require("numeralize-ru").pluralize;
 const cloudscraper = require("cloudscraper")
 const comments = [];
+const pag = [];
 
 const characters = [
   "",
