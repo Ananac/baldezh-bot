@@ -147,7 +147,6 @@ bot.hears(/пд/i, ctx => {
           ) {
             pdMemes[i] = pdMemeUrl;
             console.log(pdMemeUrl);
-            console.log(pdMemes.lenght);
           }
         });
         if (callback) callback();
