@@ -132,7 +132,7 @@ bot.hears(/айти/i, ctx => {
     const scrape = function(callback) {
       cloudscraper(options).then(html => {
         let $ = cheerio.load(html);
-        const links = $(".comment-body p");
+        const links = $(".comment-body");
         $(links).each(function(i, link) {
           const comment = $(this)
             .contents()
@@ -146,7 +146,7 @@ bot.hears(/айти/i, ctx => {
     };
 
     scrape(function() {
-      randomComment();  
+      randomComment();
     });
 
     const randomComment = function() {
@@ -172,12 +172,64 @@ bot.hears(/покеда/gi, ctx => ctx.reply("До свидания"));
 /**
  * Quakoosha
  */
-bot.hears(/Quakoosha/gi, ctx => ctx.replyWithSticker('CAADBAADQAADL9_4CQr9fwscIkInFgQ'));
+bot.hears(/Quakoosha/gi, ctx =>
+  ctx.replyWithSticker("CAADBAADQAADL9_4CQr9fwscIkInFgQ")
+);
 
 /**
  * Kavo
  */
-bot.hears("каво", ctx => ctx.replyWithPhoto(
-  { source: `${__dirname}/img/kavo.jpg` }
-));
+bot.hears("каво", ctx =>
+  ctx.replyWithPhoto({ source: `${__dirname}/img/kavo.jpg` })
+);
+
+/**
+ * Random meme from prodota
+ */
+bot.hears(/пд/i, ctx => {
+  try {
+    const options = {
+      method: "GET",
+      url: "https://prodota.ru/forum/index.php?showtopic=207546&page=60"
+    };
+
+    const scrape = function(callback) {
+      cloudscraper(options).then(html => {
+        let $ = cheerio.load(html);
+        const links = $(".post.entry-content");
+
+        $(links).each(function(i, link) {
+          var sop = $(this)
+            .find(".bbc_img")
+            .attr("src");
+          if ((sop !== "") & (sop !== undefined) & (sop !== /prodota/gi)) {
+            pag[i] = sop;
+            console.log(sop);
+          }
+        });
+        if (callback) callback();
+      });
+    };
+
+    scrape(function() {
+      randomComment();
+    });
+
+    const randomComment = function() {
+      const x = Math.floor(Math.random() * pag.length);
+      console.log("x = " + x);
+      if ((pag[x] === undefined) | (pag[x] === "") | (pag[x] === /prodota/gi)) {
+        console.log("Empty comment");
+        randomComment();
+      } else {
+        ctx.replyWithPhoto({ source: pag[x] });
+      }
+    };
+  } catch (e) {
+    console.error(e);
+
+    ctx.reply("Что-то сломалось");
+  }
+});
+
 bot.launch();
