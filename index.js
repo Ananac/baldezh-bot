@@ -219,7 +219,7 @@ bot.hears(/пд/i, ctx => {
         console.log("Empty comment");
         randomComment();
       } else {
-        ctx.replyWithPhoto({ source: pag[x] });
+        ctx.replyWithPhoto({ url: pag[x] });
       }
     };
   } catch (e) {
