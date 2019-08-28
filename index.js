@@ -185,9 +185,10 @@ bot.hears("каво", ctx =>
  */
 bot.hears(/пд/i, ctx => {
   try {
+    const page = Math.floor(Math.random() * 502);
     const options = {
       method: "GET",
-      url: "https://prodota.ru/forum/index.php?showtopic=207546&page=60"
+      url: `https://prodota.ru/forum/index.php?showtopic=207546&page=${page}`
     };
 
     const scrape = function(callback) {
