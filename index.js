@@ -3,11 +3,7 @@ const https = require("https");
 const cheerio = require("cheerio");
 const pluralize = require("numeralize-ru").pluralize;
 const cloudscraper = require("cloudscraper");
-// const cloudscraperSsl = require("cloudscraper").defaults({
-//   agentOptions: {
-//     ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256"
-//   }
-// });
+
 
 let comments = [];
 let pag = [];
@@ -123,9 +119,59 @@ bot.hears(/дайте мем/gi, ctx => {
 });
 
 /**
+ * Random meme from prodota
+ */
+bot.hears(/пд/i, ctx => {
+  try {
+    const scrape = function(callback) {
+      let page = Math.floor(Math.random() * 502);
+      const options = {
+        method: "GET",
+        url: `https://prodota.ru/forum/index.php?showtopic=215780&page=${page}`
+      };
+      cloudscraper(options).then(html => {
+        let $ = cheerio.load(html);
+        const links = $(".post.entry-content span");
+
+        $(links).each(function(i, link) {
+          const sop = $(this)
+            .find(".bbc_img")
+            .attr("src");
+          if ((sop !== "") & (sop !== undefined) & (sop !== /prodota/gi)) {
+            pag[i] = sop;
+            console.log(sop);
+            console.log(pag.lenght);
+          }
+        });
+        if (callback) callback();
+      });
+    };
+
+    scrape(function() {
+      randomComment();
+    });
+
+    const randomComment = function() {
+      const x = Math.floor(Math.random() * pag.length);
+      console.log("x = " + x);
+        ctx.replyWithPhoto({ url: pag[x] });      
+    };
+  } catch (e) {
+    console.error(e);
+
+    ctx.reply("Что-то сломалось");
+  }
+});
+
+/**
  * Random comment from ebanoe.it
  */
-bot.hears(/'айти'/i, ctx => {
+bot.hears(/айти/i, ctx => {
+  const cloudscraperSsl = require("cloudscraper").defaults({
+    agentOptions: {
+      ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256"
+    }
+  });
   try {
     const options = {
       method: "GET",
@@ -133,7 +179,7 @@ bot.hears(/'айти'/i, ctx => {
     };
 
     const scrape = function(callback) {
-      cloudscraper(options).then(html => {
+      cloudscraperSsl(options).then(html => {
         let $ = cheerio.load(html);
         const links = $(".comment-body p");
         $(links).each(function(i, link) {
@@ -185,50 +231,5 @@ bot.hears(/Quakoosha/gi, ctx =>
 bot.hears("каво", ctx =>
   ctx.replyWithPhoto({ source: `${__dirname}/img/kavo.jpg` })
 );
-
-/**
- * Random meme from prodota
- */
-bot.hears(/пд/i, ctx => {
-  try {
-    const scrape = function(callback) {
-      let page = Math.floor(Math.random() * 502);
-      const options = {
-        method: "GET",
-        url: `https://prodota.ru/forum/index.php?showtopic=215780&page=${page}`
-      };
-      cloudscraper(options).then(html => {
-        let $ = cheerio.load(html);
-        const links = $(".post.entry-content span");
-
-        $(links).each(function(i, link) {
-          const sop = $(this)
-            .find(".bbc_img")
-            .attr("src");
-          if ((sop !== "") & (sop !== undefined) & (sop !== /prodota/gi)) {
-            pag[i] = sop;
-            console.log(sop);
-            console.log(pag.lenght);
-          }
-        });
-        if (callback) callback();
-      });
-    };
-
-    scrape(function() {
-      randomComment();
-    });
-
-    const randomComment = function() {
-      const x = Math.floor(Math.random() * pag.length);
-      console.log("x = " + x);
-        ctx.replyWithPhoto({ url: pag[x] });      
-    };
-  } catch (e) {
-    console.error(e);
-
-    ctx.reply("Что-то сломалось");
-  }
-});
 
 bot.launch();
