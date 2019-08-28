@@ -187,12 +187,12 @@ bot.hears("каво", ctx =>
 );
 
 /**
- * Random meme from prodota.ru
+ * Random meme from prodota
  */
 bot.hears(/пд/i, ctx => {
   try {
     const scrape = function(callback) {
-      let page = Math.floor(Math.random() * 500);
+      let page = Math.floor(Math.random() * 502);
       const options = {
         method: "GET",
         url: `https://prodota.ru/forum/index.php?showtopic=215780&page=${page}`
@@ -216,13 +216,17 @@ bot.hears(/пд/i, ctx => {
     };
 
     scrape(function() {
+      randomComment();
+    });
+
+    const randomComment = function() {
       const x = Math.floor(Math.random() * pag.length);
       console.log("x = " + x);
-      ctx.replyWithPhoto({ url: pag[x] });
-    });
-    
+        ctx.replyWithPhoto({ url: pag[x] });      
+    };
   } catch (e) {
     console.error(e);
+
     ctx.reply("Что-то сломалось");
   }
 });
