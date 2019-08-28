@@ -173,4 +173,11 @@ bot.hears(/покеда/gi, ctx => ctx.reply("До свидания"));
  * Quakoosha
  */
 bot.hears(/Quakoosha/gi, ctx => ctx.replyWithSticker('CAADBAADQAADL9_4CQr9fwscIkInFgQ'));
+
+/**
+ * Kavo
+ */
+bot.hears("каво", ctx => ctx.replyWithPhoto(
+  { source: `${__dirname}/img/kavo.jpg` }
+));
 bot.launch();
