@@ -135,7 +135,7 @@ bot.hears(/айти/i, ctx => {
     const scrape = function(callback) {
       cloudscraperSsl(options).then(html => {
         let $ = cheerio.load(html);
-        const links = $(".comment-body");
+        const links = $(".comment-body p");
         $(links).each(function(i, link) {
           const comment = $(this)
             .contents()
