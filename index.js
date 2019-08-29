@@ -135,12 +135,12 @@ bot.hears(/пд/i, ctx => {
       cloudscraper(options).then(html => {
         let $ = cheerio.load(html);
         const links = $(".post.entry-content span");
-
+        let pos = 0;
         $(links).each(function(i, link) {
           const pdMemeUrl = $(this)
             .find(".bbc_img")
             .attr("src");
-            let pos = 0;
+
           if (
             (pdMemeUrl !== "") &
             (pdMemeUrl !== undefined) &
