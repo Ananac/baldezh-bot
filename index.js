@@ -161,7 +161,7 @@ bot.hears(/пд/i, ctx => {
       const x = Math.floor(Math.random() * pdMemes.length);
       console.log("x = " + x);
       ctx.replyWithPhoto({ url: pdMemes[x] });
-      pdMemes = [];
+      pdMemes.length = 0;
     };
   } catch (e) {
     console.error(e);
