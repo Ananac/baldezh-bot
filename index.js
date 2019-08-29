@@ -140,13 +140,15 @@ bot.hears(/пд/i, ctx => {
           const pdMemeUrl = $(this)
             .find(".bbc_img")
             .attr("src");
+            let pos = 0;
           if (
             (pdMemeUrl !== "") &
             (pdMemeUrl !== undefined) &
             (pdMemeUrl !== /prodota/gi)
           ) {
-            pdMemes[i] = pdMemeUrl;
-            console.log(i + ": " + pdMemeUrl);
+            pdMemes[pos] = pdMemeUrl;
+            console.log(pos + ": " + pdMemeUrl);
+            pos++;
           }
         });
         if (callback) callback();
