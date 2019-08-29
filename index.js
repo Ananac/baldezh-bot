@@ -146,7 +146,7 @@ bot.hears(/пд/i, ctx => {
             (pdMemeUrl !== /prodota/gi)
           ) {
             pdMemes[i] = pdMemeUrl;
-            console.log(pdMemeUrl);
+            console.log(i + ": " + pdMemeUrl);
           }
         });
         if (callback) callback();
