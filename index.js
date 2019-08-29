@@ -44,6 +44,7 @@ bot.use((ctx, next) => {
   return next(ctx).then(() => {
     const ms = new Date() - start;
     console.log("Response time %sms", ms);
+    console.log(ctx.message)
   });
 });
 bot.start(ctx => ctx.reply("Дарова!"));
