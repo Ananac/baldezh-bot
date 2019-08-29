@@ -49,7 +49,7 @@ bot.use((ctx, next) => {
 bot.start(ctx => ctx.reply("Дарова!"));
 bot.help(ctx =>
   ctx.reply(
-    '"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем из /r/dankmemes\n"Айти" - рандомный коммент с ebanoe.it'
+    '"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем из /r/dankmemes\n"Айти" - рандомный коммент с ebanoe.it\n"пд" - рандомная картинка с Продоты из темы "Смешные пикчеринки"'
   )
 );
 
@@ -57,7 +57,7 @@ bot.help(ctx =>
  * Who are you from Naruto
  */
 bot.hears(/кто я из наруто/gi, ctx => {
-  console.log('кто я из наруто');
+  console.log("кто я из наруто");
   try {
     const characterNum = Math.floor(Math.random() * characters.length);
     ctx.replyWithPhoto(
@@ -74,7 +74,7 @@ bot.hears(/кто я из наруто/gi, ctx => {
  * Artem's vacation ends in..
  */
 bot.hears(/артом/gi, ctx => {
-  console.log('артом');
+  console.log("артом");
   try {
     today = new Date();
     const artemIsBack = new Date(2019, 7, 26);
@@ -96,7 +96,7 @@ bot.hears(/артом/gi, ctx => {
  * Random meme from r/dankmemes/
  */
 bot.hears(/дайте мем/gi, ctx => {
-  console.log('дайте мем');
+  console.log("дайте мем");
   try {
     https
       .get("https://meme-api.herokuapp.com/gimme/dankmemes", res => {
@@ -124,7 +124,7 @@ bot.hears(/дайте мем/gi, ctx => {
  * Random meme from prodota
  */
 bot.hears(/пд/i, ctx => {
-  console.log('пд');
+  console.log("пд");
   try {
     const scrape = function(callback) {
       let page = Math.floor(Math.random() * 502);
@@ -136,11 +136,10 @@ bot.hears(/пд/i, ctx => {
         let $ = cheerio.load(html);
         const links = $(".post.entry-content span");
         let pos = 0;
-        $(links).each(function(i, link) {
+        $(links).each(function() {
           const pdMemeUrl = $(this)
             .find(".bbc_img")
             .attr("src");
-
           if (
             (pdMemeUrl !== "") &
             (pdMemeUrl !== undefined) &
@@ -175,7 +174,7 @@ bot.hears(/пд/i, ctx => {
  * Random comment from ebanoe.it
  */
 bot.hears(/айти/i, ctx => {
-  console.log('айти');
+  console.log("айти");
   const cloudscraperSsl = require("cloudscraper").defaults({
     agentOptions: {
       ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256"
