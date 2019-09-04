@@ -136,7 +136,7 @@ bot.hears(/пд/i, ctx => {
         let $ = cheerio.load(html);
         const links = $(".post.entry-content span");
         let pos = 0;
-        $(links).each(function(i, link) {
+        $(links).each(function() {
           const pdMemeUrl = $(this)
             .find(".bbc_img")
             .attr("src");
