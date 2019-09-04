@@ -44,13 +44,12 @@ bot.use((ctx, next) => {
   return next(ctx).then(() => {
     const ms = new Date() - start;
     console.log("Response time %sms", ms);
-    console.log(ctx.message)
   });
 });
 bot.start(ctx => ctx.reply("Дарова!"));
 bot.help(ctx =>
   ctx.reply(
-    '"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем из /r/dankmemes\n"Айти" - рандомный коммент с ebanoe.it\n"пд" - рандомная картинка с Продоты из темы "Смешные пикчеринки"'
+    '"Кто я из Наруто" - кто ты из Наруто\n"Дайте мем" - мем из /r/dankmemes\n"Айти" - рандомный коммент с ebanoe.it'
   )
 );
 
@@ -137,7 +136,7 @@ bot.hears(/пд/i, ctx => {
         let $ = cheerio.load(html);
         const links = $(".post.entry-content span");
         let pos = 0;
-        $(links).each(function() {
+        $(links).each(function(i, link) {
           const pdMemeUrl = $(this)
             .find(".bbc_img")
             .attr("src");
@@ -184,7 +183,7 @@ bot.hears(/айти/i, ctx => {
   try {
     const options = {
       method: "GET",
-      url: "https://ebanoe.it/2019/07/31/flexdev-trick/"
+      url: "https://ebanoe.it/2019/08/30/devs-workplaces/"
     };
 
     const scrape = function(callback) {
