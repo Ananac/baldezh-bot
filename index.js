@@ -240,4 +240,11 @@ bot.hears("каво", ctx =>
   ctx.replyWithPhoto({ source: `${__dirname}/img/kavo.jpg` })
 );
 
+
+/**
+ * Sorry
+ */
+bot.hears("Извините", ctx => ctx.reply("Извинил"));
+
+
 bot.launch();
