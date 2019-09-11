@@ -127,10 +127,10 @@ bot.hears(/пд/i, ctx => {
   console.log("пд");
   try {
     const scrape = function(callback) {
-      let page = Math.floor(Math.random() * 502);
+      let page = Math.floor(Math.random() * 37);
       const options = {
         method: "GET",
-        url: `https://prodota.ru/forum/index.php?showtopic=215780&page=${page}`
+        url: `https://prodota.ru/forum/index.php?showtopic=216714&page=${page}`
       };
       cloudscraper(options).then(html => {
         let $ = cheerio.load(html);
