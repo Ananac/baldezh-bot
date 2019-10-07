@@ -77,7 +77,7 @@ bot.hears(/артом/gi, ctx => {
   console.log("артом");
   try {
     today = new Date();
-    const artemIsBack = new Date(2019, 7, 26);
+    const artemIsBack = new Date(2019, 9, 20);
     const one_day = 1000 * 60 * 60 * 24;
     const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / one_day);
     ctx.reply(
@@ -183,7 +183,7 @@ bot.hears(/айти/i, ctx => {
   try {
     const options = {
       method: "GET",
-      url: "https://ebanoe.it/2019/08/30/devs-workplaces/"
+      url: "https://ebanoe.it/2019/10/06/nerds-essense/"
     };
 
     const scrape = function(callback) {
