@@ -53,7 +53,7 @@ bot.help(ctx =>
     '"Дайте мем" - мем из /r/dankmemes\n' + 
     '"Айти" - рандомный коммент с ebanoe.it\n' + 
     '"пд" - рандомная картинка из треда со смешными картинками prodota.ru\n' +
-    '"Quakoosha" - Quakoosha\n' +
+    // '"Quakoosha" - Quakoosha\n' +
     '"каво" - каво\n'
   )
 );
