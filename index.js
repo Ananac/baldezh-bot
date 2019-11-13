@@ -175,6 +175,30 @@ bot.hears(/пд/i, ctx => {
   }
 });
 
+bot.hears("стетхем", ctx => {
+  try {
+    
+      const options = {
+        method: "GET",
+        url: `https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=xml&lang=ru`
+      };
+  
+      cloudscraper(options).then(html => {
+        let $ = cheerio.load(html);
+        const quotetext = $("quotetext");      
+        const quoteauthor = $("quoteauthor");
+        console.log(quotetext.text());
+        console.log(quoteauthor.text());
+        ctx.reply(quotetext.text() + quoteauthor.text());
+      });
+  
+      } catch (e) {
+        console.error(e);
+        ctx.reply("Что-то сломалось");
+      }
+    });
+  
+
 /**
  * Random comment from ebanoe.it
  */
@@ -246,28 +270,6 @@ bot.hears("каво", ctx =>
 );
 
 
-bot.hears("стетхем", ctx => {
-try {
-  
-    const options = {
-      method: "GET",
-      url: `https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=xml&lang=ru`
-    };
-
-    cloudscraper(options).then(html => {
-      let $ = cheerio.load(html);
-      const quotetext = $("quotetext");      
-      const quoteauthor = $("quoteauthor");
-      console.log(quotetext.text());
-      console.log(quoteauthor.text());
-      ctx.reply(quotetext.text() + quoteauthor.text());
-    });
-
-    } catch (e) {
-      console.error(e);
-      ctx.reply("Что-то сломалось");
-    }
-  });
 
 
 /**
