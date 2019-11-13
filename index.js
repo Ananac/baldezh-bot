@@ -1,6 +1,5 @@
 const Telegraf = require("telegraf");
 const https = require("https");
-const http = require("http");
 const cheerio = require("cheerio");
 const pluralize = require("numeralize-ru").pluralize;
 const cloudscraper = require("cloudscraper");
@@ -245,32 +244,6 @@ bot.hears(/Quakoosha/gi, ctx =>
 bot.hears("каво", ctx =>
   ctx.replyWithPhoto({ source: `${__dirname}/img/kavo.jpg` })
 );
-
-
-/**
- * Kavo
- */
-bot.hears("анек",  ctx => {
-  try {
-    http.get("http://rzhunemogu.ru/RandJSON.aspx?CType=11", res => {
-      console.log("statusCode:", res.statusCode);
-      console.log("headers:", res.headers);
-    
-      res.on("data", d => {
-        process.stdout.write(d);
-        const obj = JSON.parse(d);
-        const memeUrl = obj.content;
-          ctx.reply(memeUrl);
-        });
-      })
-      .on("error", e => {
-        console.error(e);
-      });
-  } catch (e) {
-    console.error(e);
-    ctx.reply("Что-то сломалось");
-  }
-});
 
 /**
  * Sorry
