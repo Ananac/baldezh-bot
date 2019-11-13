@@ -1,19 +1,23 @@
-// const cloudscraper = require("cloudscraper");
-// const cheerio = require("cheerio");
+const cloudscraper = require("cloudscraper");
+const cheerio = require("cheerio");
 
 const http = require("http");
 
 // const https = require("https");
 // var pag = [];
 
-http.get("http://rzhunemogu.ru/RandJSON.aspx?CType=11", res => {
-  console.log("statusCode:", res.statusCode);
-  console.log("headers:", res.headers);
 
-  res.on("data", d => {
-    process.stdout.write(d);
-    const obj = JSON.parse(d);
-    const memeUrl = obj.content;
-    console.log(memeUrl);
-  });
-});
+
+    const options = {
+      method: "GET",
+      url: `https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=xml&lang=ru`
+    };
+
+    cloudscraper(options).then(html => {
+      let $ = cheerio.load(html);
+      const quotetext = $("quotetext");      
+      const quoteauthor = $("quoteauthor");
+      console.log(quotetext.text());
+      console.log(quoteauthor.text());
+    });
+

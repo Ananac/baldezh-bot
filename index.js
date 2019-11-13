@@ -132,7 +132,7 @@ bot.hears(/пд/i, ctx => {
   console.log("пд");
   try {
     const scrape = function(callback) {
-      let page = Math.floor(Math.random() * 204);
+      let page = Math.floor(Math.random() * 204s);
       const options = {
         method: "GET",
         url: `https://prodota.ru/forum/index.php?showtopic=216714&page=${page}`
@@ -244,6 +244,31 @@ bot.hears(/Quakoosha/gi, ctx =>
 bot.hears("каво", ctx =>
   ctx.replyWithPhoto({ source: `${__dirname}/img/kavo.jpg` })
 );
+
+
+bot.hears("стетхем", ctx => {
+try {
+  
+    const options = {
+      method: "GET",
+      url: `https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=xml&lang=ru`
+    };
+
+    cloudscraper(options).then(html => {
+      let $ = cheerio.load(html);
+      const quotetext = $("quotetext");      
+      const quoteauthor = $("quoteauthor");
+      console.log(quotetext.text());
+      console.log(quoteauthor.text());
+      ctx.reply(quotetext.text() + quoteauthor.text());
+    });
+
+    } catch (e) {
+      console.error(e);
+      ctx.reply("Что-то сломалось");
+    }
+  });
+
 
 /**
  * Sorry
