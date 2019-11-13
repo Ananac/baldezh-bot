@@ -179,7 +179,7 @@ bot.hears(/пд/i, ctx => {
 /**
  * Smart quote
  */
-bot.hears("стетхем", ctx => {
+bot.hears(/стетхем/gi, ctx => {
   try {
     const options = {
       method: "GET",
