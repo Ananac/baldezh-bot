@@ -175,6 +175,9 @@ bot.hears(/пд/i, ctx => {
   }
 });
 
+/**
+ * Smart quote
+ */
 bot.hears("стетхем", ctx => {
   try {
     
@@ -189,7 +192,7 @@ bot.hears("стетхем", ctx => {
         const quoteauthor = $("quoteauthor");
         console.log(quotetext.text());
         console.log(quoteauthor.text());
-        ctx.reply(quotetext.text() + quoteauthor.text());
+        ctx.reply(quotetext.text() + "\n\n" + quoteauthor.text());
       });
   
       } catch (e) {

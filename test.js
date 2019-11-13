@@ -17,7 +17,6 @@ const http = require("http");
       let $ = cheerio.load(html);
       const quotetext = $("quotetext");      
       const quoteauthor = $("quoteauthor");
-      console.log(quotetext.text());
-      console.log(quoteauthor.text());
+      console.log(quotetext.text() + "\n\n" + quoteauthor.text());
     });
 
