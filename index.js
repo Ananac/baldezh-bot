@@ -49,12 +49,13 @@ bot.use((ctx, next) => {
 bot.start(ctx => ctx.reply("Дарова!"));
 bot.help(ctx =>
   ctx.reply(
-    '"Кто я из Наруто" - кто ты из Наруто\n' + 
-    '"Дайте мем" - мем из /r/dankmemes\n' + 
-    '"Айти" - рандомный коммент с ebanoe.it\n' + 
-    '"пд" - рандомная картинка из треда со смешными картинками prodota.ru\n' +
-    '"Quakoosha" - Quakoosha\n' +
-    '"каво" - каво\n'
+    '"Кто я из Наруто" - кто ты из Наруто\n' +
+      '"Дайте мем" - мем из /r/dankmemes\n' +
+      '"Айти" - рандомный коммент с ebanoe.it\n' +
+      '"пд" - рандомная картинка из треда со смешными картинками prodota.ru\n' +
+      '"Quakoosha" - Quakoosha\n' +
+      '"каво" - каво\n' +
+      '"Стетхем" - цитаты от Стетхема\n'
   )
 );
 
@@ -180,27 +181,22 @@ bot.hears(/пд/i, ctx => {
  */
 bot.hears("стетхем", ctx => {
   try {
-    
-      const options = {
-        method: "GET",
-        url: `https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=xml&lang=ru`
-      };
-  
-      cloudscraper(options).then(html => {
-        let $ = cheerio.load(html);
-        const quotetext = $("quotetext");      
-        const quoteauthor = $("quoteauthor");
-        console.log(quotetext.text());
-        console.log(quoteauthor.text());
-        ctx.reply(quotetext.text() + "\n\n" + quoteauthor.text());
-      });
-  
-      } catch (e) {
-        console.error(e);
-        ctx.reply("Что-то сломалось");
-      }
+    const options = {
+      method: "GET",
+      url: `https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=xml&lang=ru`
+    };
+
+    cloudscraper(options).then(html => {
+      let $ = cheerio.load(html);
+      const quotetext = $("quotetext");
+      const quoteauthor = $("quoteauthor");
+      ctx.reply(quotetext.text() + "\n\n" + quoteauthor.text());
     });
-  
+  } catch (e) {
+    console.error(e);
+    ctx.reply("Что-то сломалось");
+  }
+});
 
 /**
  * Random comment from ebanoe.it
@@ -271,9 +267,6 @@ bot.hears(/Quakoosha/gi, ctx =>
 bot.hears("каво", ctx =>
   ctx.replyWithPhoto({ source: `${__dirname}/img/kavo.jpg` })
 );
-
-
-
 
 /**
  * Sorry
