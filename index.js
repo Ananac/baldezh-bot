@@ -188,9 +188,9 @@ bot.hears(/стетхем/gi, ctx => {
 
     cloudscraper(options).then(html => {
       let $ = cheerio.load(html);
-      const quotetext = $("quotetext");
-      const quoteauthor = $("quoteauthor");
-      ctx.reply(quotetext.text() + "\n\n" + quoteauthor.text());
+      const quoteText = $("quotetext");
+      const quoteAuthor = $("quoteauthor");
+      ctx.reply(quoteText.text() + "\n\n" + quoteAuthor.text());
     });
   } catch (e) {
     console.error(e);
