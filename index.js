@@ -245,8 +245,8 @@ bot.hears(/гороскоп/gi, ctx => {
         zodiacUrl = "12";
         break;
       default:
-        ctx.reply(`Сам ищи гороскоп для этого знака зодиака: ${zodiacSign}`);
-        break;
+        ctx.reply(`Сам ищи гороскоп для этого знака зодиака: ${zodiacSign}`);        
+        return;
     }
 
     const options = {
