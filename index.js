@@ -202,7 +202,7 @@ bot.hears(/стетхем/gi, ctx => {
 /**
  * Gyroscooter
  */
-bot.hears(/гороскоп/i, ctx => {
+bot.hears(/гироскоп/i, ctx => {
   try {
     let words = ctx.update.message.text.split(" ");
     let zodiacSign = words[1];
