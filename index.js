@@ -245,7 +245,7 @@ bot.hears(/гироскоп/i, ctx => {
         zodiacUrl = "12";
         break;
       default:
-        ctx.replyWithSticker("CAADBAADQAADL9_4CQr9fwscIkInFgQ");
+        ctx.replyWithSticker("CAADAgADUgADq1fEC5C5TuFnWpzfFgQ");
         return;
     }
 
