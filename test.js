@@ -1,6 +1,6 @@
 const cloudscraper = require("cloudscraper");
 const cheerio = require("cheerio");
-
+const utf8 = require('utf8');
 const http = require("http");
 
 // const https = require("https");
@@ -15,7 +15,7 @@ const http = require("http");
 
     cloudscraper(options).then(html => {
       let $ = cheerio.load(html);
-      const quotetext = $("p");      
-      console.log(quotetext.text() + "\n\n");
+      const quoteText = $("p");      
+      console.log((quoteText.text()));
     });
 

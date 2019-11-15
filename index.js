@@ -94,6 +94,7 @@ bot.hears(/артом/gi, ctx => {
     );
   } catch (e) {
     console.error(e);
+    ctx.editMessageText()
     ctx.reply("Что-то сломалось");
   }
 });
@@ -200,7 +201,7 @@ bot.hears(/стетхем/gi, ctx => {
 
 
 /**
- * Smart quote
+ * Gyroscooter
  */
 bot.hears(/гороскоп/gi, ctx => {
   try {
@@ -212,7 +213,7 @@ bot.hears(/гороскоп/gi, ctx => {
     cloudscraper(options).then(html => {
       let $ = cheerio.load(html);
       const quoteText = $("p"); 
-      ctx.reply(quoteText.text());
+      ctx.reply(ctx.update.message.text);
     });
   } catch (e) {
     console.error(e);
