@@ -94,7 +94,7 @@ bot.hears(/артом/gi, ctx => {
     );
   } catch (e) {
     console.error(e);
-    ctx.editMessageText()
+    ctx.editMessageText();
     ctx.reply("Что-то сломалось");
   }
 });
@@ -199,21 +199,65 @@ bot.hears(/стетхем/gi, ctx => {
   }
 });
 
-
 /**
  * Gyroscooter
  */
 bot.hears(/гороскоп/gi, ctx => {
   try {
+    let words = ctx.update.message.text.split(" ");
+    let zodiacSign = words[1];
+    let zodiacUrl;
+    switch (zodiacSign) {
+      case "овен":
+        zodiacUrl = "1";
+        break;
+      case "телец":
+        zodiacUrl = "2";
+        break;
+      case "близнецы":
+        zodiacUrl = "3";
+        break;
+      case "рак":
+        zodiacUrl = "4";
+        break;
+      case "лев":
+        zodiacUrl = "5";
+        break;
+      case "дева":
+        zodiacUrl = "6";
+        break;
+      case "весы":
+        zodiacUrl = "7";
+        break;
+      case "скорпион":
+        zodiacUrl = "8";
+        break;
+      case "стрелец":
+        zodiacUrl = "9";
+        break;
+      case "козерог":
+        zodiacUrl = "10";
+        break;
+      case "водолей":
+        zodiacUrl = "11";
+        break;
+      case "рыбы":
+        zodiacUrl = "12";
+        break;
+      default:
+        ctx.reply(`Сам ищи гороскоп для этого знака зодиака: ${zodiacSign}`);
+        break;
+    }
+
     const options = {
       method: "GET",
-      url: `http://stoboi.ru/gorodaily/horoscope.php?id=1`
+      url: `http://stoboi.ru/gorodaily/horoscope.php?id=${zodiacUrl}`
     };
 
     cloudscraper(options).then(html => {
       let $ = cheerio.load(html);
-      const quoteText = $("p"); 
-      ctx.reply(ctx.update.message.text);
+      const quoteText = $("p");
+      ctx.reply(quoteText.text());
     });
   } catch (e) {
     console.error(e);

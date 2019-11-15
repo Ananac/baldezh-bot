@@ -6,7 +6,10 @@ const http = require("http");
 // const https = require("https");
 // var pag = [];
 
-
+let s = "гороскоп лев"
+var words = s.split(' ');
+let y = words[1];
+console.log(y);
 
     const options = {
       method: "GET",
