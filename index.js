@@ -198,6 +198,28 @@ bot.hears(/стетхем/gi, ctx => {
   }
 });
 
+
+/**
+ * Smart quote
+ */
+bot.hears(/гороскоп/gi, ctx => {
+  try {
+    const options = {
+      method: "GET",
+      url: `http://stoboi.ru/gorodaily/horoscope.php?id=1`
+    };
+
+    cloudscraper(options).then(html => {
+      let $ = cheerio.load(html);
+      const quotetext = $("p"); 
+      ctx.reply(quoteText.text());
+    });
+  } catch (e) {
+    console.error(e);
+    ctx.reply("Что-то сломалось");
+  }
+});
+
 /**
  * Random comment from ebanoe.it
  */

@@ -10,13 +10,12 @@ const http = require("http");
 
     const options = {
       method: "GET",
-      url: `https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=xml&lang=ru`
+      url: `http://stoboi.ru/gorodaily/horoscope.php?id=1`
     };
 
     cloudscraper(options).then(html => {
       let $ = cheerio.load(html);
-      const quotetext = $("quotetext");      
-      const quoteauthor = $("quoteauthor");
-      console.log(quotetext.text() + "\n\n" + quoteauthor.text());
+      const quotetext = $("p");      
+      console.log(quotetext.text() + "\n\n");
     });
 
