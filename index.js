@@ -245,7 +245,7 @@ bot.hears(/гироскоп/i, ctx => {
         zodiacUrl = "12";
         break;
       default:
-        ctx.reply(`Сам ищи гороскоп для этого знака зодиака: ${zodiacSign}`);        
+        ctx.replyWithSticker("CAADBAADQAADL9_4CQr9fwscIkInFgQ");
         return;
     }
 
