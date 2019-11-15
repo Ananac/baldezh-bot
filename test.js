@@ -6,19 +6,19 @@ const http = require("http");
 // const https = require("https");
 // var pag = [];
 
-let s = "гороскоп лев"
-var words = s.split(' ');
-let y = words[1];
-console.log(y);
+// let s = "гороскоп лев"
+// var words = s.split(' ');
+// let y = words[1];
+// console.log(y);
 
     const options = {
       method: "GET",
-      url: `http://stoboi.ru/gorodaily/horoscope.php?id=1`
+      url: `http://horo.tochka.net/ua/horoscopes/aries/`
     };
 
     cloudscraper(options).then(html => {
       let $ = cheerio.load(html);
-      const quoteText = $("p");      
+      const quoteText = $("#Article p");      
       console.log((quoteText.text()));
     });
 

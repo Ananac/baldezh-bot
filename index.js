@@ -209,39 +209,39 @@ bot.hears(/гироскоп/i, ctx => {
     let zodiacUrl;
     switch (zodiacSign) {
       case "овен":
-        zodiacUrl = "1";
+        zodiacUrl = "aries";
         break;
       case "телец":
-        zodiacUrl = "2";
+        zodiacUrl = "taurus";
         break;
       case "близнецы":
-        zodiacUrl = "3";
+        zodiacUrl = "gemini";
         break;
       case "рак":
-        zodiacUrl = "4";
+        zodiacUrl = "cancer";
         break;
       case "лев":
-        zodiacUrl = "5";
+        zodiacUrl = "leo";
         break;
       case "дева":
-        zodiacUrl = "6";
+        zodiacUrl = "virgo";
         break;
       case "весы":
-        zodiacUrl = "7";
+        zodiacUrl = "libra";
         break;
       case "скорпион":
-        zodiacUrl = "8";
+        zodiacUrl = "scorpio";
         break;
       case "стрелец":
-        zodiacUrl = "9";
+        zodiacUrl = "sagittarius";
         break;
       case "козерог":
-        zodiacUrl = "10";
+        zodiacUrl = "capricorn";
         break;
-      case "водолей":
+      case "aquarius":
         zodiacUrl = "11";
         break;
-      case "рыбы":
+      case "pisces":
         zodiacUrl = "12";
         break;
       default:
@@ -251,7 +251,7 @@ bot.hears(/гироскоп/i, ctx => {
 
     const options = {
       method: "GET",
-      url: `http://stoboi.ru/gorodaily/horoscope.php?id=${zodiacUrl}`
+      url: `http://horo.tochka.net/ua/horoscopes/aries/${zodiacUrl}`
     };
 
     cloudscraper(options).then(html => {
