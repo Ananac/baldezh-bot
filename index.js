@@ -251,7 +251,7 @@ bot.hears(/гироскоп/i, ctx => {
 
     const options = {
       method: "GET",
-      url: `http://horo.tochka.net/ua/horoscopes/aries/${zodiacUrl}`
+      url: `http://horo.tochka.net/ua/horoscopes/${zodiacUrl}`
     };
 
     cloudscraper(options).then(html => {
