@@ -238,11 +238,11 @@ bot.hears(/гироскоп/i, ctx => {
       case "козерог":
         zodiacUrl = "capricorn";
         break;
-      case "aquarius":
-        zodiacUrl = "11";
+      case "водолей":
+        zodiacUrl = "aquarius";
         break;
-      case "pisces":
-        zodiacUrl = "12";
+      case "рыбы":
+        zodiacUrl = "pisces";
         break;
       default:
         ctx.replyWithSticker("CAADAgADUgADq1fEC5C5TuFnWpzfFgQ");
@@ -256,7 +256,7 @@ bot.hears(/гироскоп/i, ctx => {
 
     cloudscraper(options).then(html => {
       let $ = cheerio.load(html);
-      const quoteText = $("p");
+      const quoteText = $("#Article p");
       ctx.reply(quoteText.text());
     });
   } catch (e) {
