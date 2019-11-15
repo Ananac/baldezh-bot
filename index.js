@@ -211,7 +211,7 @@ bot.hears(/гороскоп/gi, ctx => {
 
     cloudscraper(options).then(html => {
       let $ = cheerio.load(html);
-      const quotetext = $("p"); 
+      const quoteText = $("p"); 
       ctx.reply(quoteText.text());
     });
   } catch (e) {
