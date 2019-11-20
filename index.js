@@ -211,9 +211,12 @@ bot.hears(/гироскоп/i, ctx => {
       case "овен":
         zodiacUrl = "aries";
         break;
+      case "телець":
       case "телец":
         zodiacUrl = "taurus";
         break;
+      case "близнюки":
+      case "близнята":
       case "близнецы":
         zodiacUrl = "gemini";
         break;
@@ -223,24 +226,31 @@ bot.hears(/гироскоп/i, ctx => {
       case "лев":
         zodiacUrl = "leo";
         break;
+      case "дiва":
       case "дева":
         zodiacUrl = "virgo";
         break;
+      case "терези":
       case "весы":
         zodiacUrl = "libra";
         break;
+      case "скорпiон":
       case "скорпион":
         zodiacUrl = "scorpio";
         break;
+      case "стрілець":
       case "стрелец":
         zodiacUrl = "sagittarius";
         break;
+      case "козоріг":
       case "козерог":
         zodiacUrl = "capricorn";
         break;
+      case "водолiй":
       case "водолей":
         zodiacUrl = "aquarius";
         break;
+      case "риби":
       case "рыбы":
         zodiacUrl = "pisces";
         break;
