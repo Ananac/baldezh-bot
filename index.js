@@ -106,7 +106,7 @@ bot.hears(/дайте мем/gi, ctx => {
   console.log("дайте мем");
   try {
     https
-      .get("https://meme-api.herokuapp.com/gimme/aviationpics", res => {
+      .get("https://meme-api.herokuapp.com/gimme/notinteresting", res => {
         console.log("statusCode:", res.statusCode);
         console.log("headers:", res.headers);
 
