@@ -134,7 +134,7 @@ bot.hears(/пд/i, ctx => {
   console.log("пд");
   try {
     const scrape = function(callback) {
-      let page = Math.floor(Math.random() * 220);
+      let page = Math.floor(Math.random() * 246);
       const options = {
         method: "GET",
         url: `https://prodota.ru/forum/index.php?showtopic=216714&page=${page}`
@@ -148,8 +148,8 @@ bot.hears(/пд/i, ctx => {
             .find(".bbc_img")
             .attr("src");
           if (
-            (pdMemeUrl !== "") &
-            (pdMemeUrl !== undefined) &
+            (pdMemeUrl !== "") &&
+            (pdMemeUrl !== undefined) &&
             (pdMemeUrl !== /prodota/gi)
           ) {
             pdMemes[pos] = pdMemeUrl;
@@ -299,7 +299,7 @@ bot.hears(/айти/i, ctx => {
           const comment = $(this)
             .contents()
             .text();
-          if ((comment !== undefined) & (comment !== "")) {
+          if ((comment !== undefined) && (comment !== "")) {
             comments[i] = comment;
           }
         });
@@ -313,7 +313,7 @@ bot.hears(/айти/i, ctx => {
 
     const randomComment = function() {
       const x = Math.floor(Math.random() * comments.length);
-      if ((comments[x] === undefined) | (comments[x] === "")) {
+      if ((comments[x] === undefined) || (comments[x] === "")) {
         console.log("Empty comment, randomming new...");
         randomComment();
       } else {
