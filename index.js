@@ -346,6 +346,13 @@ bot.hears("каво", ctx =>
 );
 
 /**
+ * Kavo
+ */
+bot.hears(/маргинал/gi, ctx =>
+  ctx.replyWithPhoto({ source: `${__dirname}/img/marginal.jpg` })
+);
+
+/**
  * Sorry
  */
 bot.hears("Извините", ctx => ctx.reply("Извинил"));
