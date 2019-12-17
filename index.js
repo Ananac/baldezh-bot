@@ -137,20 +137,20 @@ bot.hears(/пд/i, ctx => {
       let page = Math.floor(Math.random() * 284);
       const options = {
         method: "GET",
-        url: `https://prodota.ru/forum/index.php?showtopic=216714&page=${page}`
+        url: `https://prodota.ru/forum/topic/216714/page/${page}/`
       };
       cloudscraper(options).then(html => {
         let $ = cheerio.load(html);
-        const links = $(".post.entry-content span");
+        const links = $(".cPost_contentWrap p");
         let pos = 0;
         $(links).each(function() {
           const pdMemeUrl = $(this)
-            .find(".bbc_img")
-            .attr("src");
+            .find("img")
+            .attr("data-src");
           if (
-            (pdMemeUrl !== "") &&
-            (pdMemeUrl !== undefined) &&
-            (pdMemeUrl !== /prodota/gi)
+            pdMemeUrl !== "" &&
+            pdMemeUrl !== undefined &&
+            pdMemeUrl !== /prodota/gi
           ) {
             pdMemes[pos] = pdMemeUrl;
             console.log(pos + ": " + pdMemeUrl);
@@ -299,7 +299,7 @@ bot.hears(/айти/i, ctx => {
           const comment = $(this)
             .contents()
             .text();
-          if ((comment !== undefined) && (comment !== "")) {
+          if (comment !== undefined && comment !== "") {
             comments[i] = comment;
           }
         });
@@ -313,7 +313,7 @@ bot.hears(/айти/i, ctx => {
 
     const randomComment = function() {
       const x = Math.floor(Math.random() * comments.length);
-      if ((comments[x] === undefined) || (comments[x] === "")) {
+      if (comments[x] === undefined || comments[x] === "") {
         console.log("Empty comment, randomming new...");
         randomComment();
       } else {
