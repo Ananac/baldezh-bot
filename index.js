@@ -134,14 +134,14 @@ bot.hears(/пд/i, ctx => {
   console.log("пд");
   try {
     const scrape = function(callback) {
-      let page = Math.floor(Math.random() * 284);
+      let page = Math.floor(Math.random() * 302);
       const options = {
         method: "GET",
         url: `https://prodota.ru/forum/topic/216714/page/${page}/`
       };
       cloudscraper(options).then(html => {
         let $ = cheerio.load(html);
-        const links = $(".cPost_contentWrap p");
+        const links = $(".ipsType_normal p");
         let pos = 0;
         $(links).each(function() {
           const pdMemeUrl = $(this)
