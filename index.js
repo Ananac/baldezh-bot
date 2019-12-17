@@ -150,7 +150,7 @@ bot.hears(/пд/i, ctx => {
           if (
             pdMemeUrl !== "" &&
             pdMemeUrl !== undefined &&
-            pdMemeUrl !== /prodota/gi
+            (!pdMemeUrl.match(/prodota/gi))
           ) {
             pdMemes[pos] = pdMemeUrl;
             console.log(pos + ": " + pdMemeUrl);

@@ -15,10 +15,10 @@ let pdMemes = [];
 console.log("пд");
   try {
     const scrape = function(callback) {
-      let page = Math.floor(Math.random() * 302);
+      let page = Math.floor(Math.random() * 301);
       const options = {
         method: "GET",
-        url: `https://prodota.ru/forum/topic/216714/page/222/`
+        url: `https://prodota.ru/forum/topic/216714/page/200/`
       };
       cloudscraper(options).then(html => {
         let $ = cheerio.load(html);
@@ -31,7 +31,7 @@ console.log("пд");
           if (
             (pdMemeUrl !== "") &&
             (pdMemeUrl !== undefined) &&
-            (pdMemeUrl !== /prodota/gi)
+            (!pdMemeUrl.match(/prodota/gi))
           ) {
             pdMemes[pos] = pdMemeUrl;
             console.log(pos + ": " + pdMemeUrl);
