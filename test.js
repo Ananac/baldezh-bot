@@ -1,4 +1,3 @@
-const cloudscraper = require("cloudscraper");
 const cheerio = require("cheerio");
 const utf8 = require('utf8');
 const http = require("http");
@@ -10,32 +9,29 @@ const http = require("http");
 // var words = s.split(' ');
 // let y = words[1];
 // console.log(y);
-let pdMemes = [];
 
-console.log("пд");
+console.log("айти");
+  var cloudscraperSsl = require("cloudscraper").defaults({
+    agentOptions: {
+      ciphers: 'ECDHE-ECDSA-AES128-GCM-SHA256'
+    }
+  });
   try {
+    const options = {
+      method: "GET",
+      url: "https://ebanoe.it/2019/10/06/nerds-essense/"
+    };
+
     const scrape = function(callback) {
-      let page = Math.floor(Math.random() * 301);
-      const options = {
-        method: "GET",
-        url: `https://prodota.ru/forum/topic/216714/page/200/`
-      };
-      cloudscraper(options).then(html => {
+      cloudscraperSsl(options).then(html => {
         let $ = cheerio.load(html);
-        const links = $(".ipsType_normal p");
-        let pos = 0;
-        $(links).each(function() {
-          const pdMemeUrl = $(this)
-            .find("img")
-            .attr("data-src");
-          if (
-            (pdMemeUrl !== "") &&
-            (pdMemeUrl !== undefined) &&
-            (!pdMemeUrl.match(/prodota/gi))
-          ) {
-            pdMemes[pos] = pdMemeUrl;
-            console.log(pos + ": " + pdMemeUrl);
-            pos++;
+        const links = $(".comment-body p");
+        $(links).each(function(i, link) {
+          const comment = $(this)
+            .contents()
+            .text();
+          if (comment !== undefined && comment !== "") {
+            comments[i] = comment;
           }
         });
         if (callback) callback();
@@ -47,9 +43,13 @@ console.log("пд");
     });
 
     const randomComment = function() {
-      const x = Math.floor(Math.random() * pdMemes.length);
-      console.log("x = " + x);
-      pdMemes.length = 0;
+      const x = Math.floor(Math.random() * comments.length);
+      if (comments[x] === undefined || comments[x] === "") {
+        console.log("Empty comment, randomming new...");
+        randomComment();
+      } else {
+        console.log(comments[x]);
+      }
     };
   } catch (e) {
     console.error(e);

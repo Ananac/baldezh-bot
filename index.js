@@ -150,7 +150,7 @@ bot.hears(/пд/i, ctx => {
           if (
             pdMemeUrl !== "" &&
             pdMemeUrl !== undefined &&
-            (!pdMemeUrl.match(/prodota/gi))
+            !pdMemeUrl.match(/prodota/gi)
           ) {
             pdMemes[pos] = pdMemeUrl;
             console.log(pos + ": " + pdMemeUrl);
@@ -330,6 +330,11 @@ bot.hears(/айти/i, ctx => {
  * Say goodbye
  */
 bot.hears(/покеда/gi, ctx => ctx.reply("До свидания"));
+
+/**
+ * Say goodbye
+ */
+bot.hears(/до свидания/gi, ctx => ctx.reply("Покеда"));
 
 /**
  * Quakoosha
