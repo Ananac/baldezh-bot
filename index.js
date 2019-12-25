@@ -75,7 +75,7 @@ const genders = [
   "Trans Person - переходной к лицу, вне половой классификации",
   "Trans Woman - переходной к женщине",
   "Transexual - транссексуальный",
-  "Transexual Female - женский траннсексуальный",
+  "Transexual Female - женский транссексуальный",
   "Transexual Male - мужской транссексуальный",
   "Transexual Man - мужчина транссексуал",
   "Transexual Person - лицо траннсексуал",
@@ -202,7 +202,7 @@ bot.hears(/пд/i, ctx => {
   console.log("пд");
   try {
     const scrape = function(callback) {
-      let page = Math.floor(Math.random() * 302);
+      let page = Math.floor(Math.random() * 320);
       const options = {
         method: "GET",
         url: `https://prodota.ru/forum/topic/216714/page/${page}/`
