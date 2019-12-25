@@ -38,6 +38,60 @@ const characters = [
   "Наруто Удзумаки"
 ];
 
+const genders = [
+  "",
+  "Agender - бесполый",
+  "Androgyne - андроген, гермафродит (мужчиноженщина)",
+  "Androgynous - мужеженственный (внутренне, по ощущениям)",
+  "Bigender - ощущающие себя в разное время то мужчиной, то женщиной",
+  "Cis - латинск. «пред-», т.е. «недо-» (без негативной коннотации)",
+  "Cis Female - предженский, недоженский",
+  "Cis Male - предмужской, недомужской",
+  "Cis Man - предмужчина, недомужчина",
+  "Cis Woman - предженщина, недоженщина",
+  "Cisgender - предполовой, недополовой",
+  "Cisgender Female - женский предпол, недополовой женский",
+  "Cisgender Male - мужской предпол, недополовой мужской",
+  "Cisgender Man - предполовой мужчина, недополовой мужчина",
+  "Cisgender Woman - предполовая женщина, недополовая женщина",
+  "Female to Male - от женского к мужскому",
+  "FTM - женщина, хирургически, внешне, принявшая облик мужчины",
+  "Gender Fluid - неустойчивый, «текучий»",
+  "Gender Nonconforming - отрицающий традиционную классификацию",
+  "Gender Questioning - пол, остающийся под вопросом",
+  "Gender Variant - пол, допускающий несколько вариантов",
+  "Genderqueer - свой особенный, своеобычный",
+  "Intersex - межполовой",
+  "Male to Female - от мужчины к женщине",
+  "MTF - мужчина, хирургически, внешне, принявший облик женщины",
+  "Neither - ни тот, ни другой (из двух традиционных)",
+  "Neutrois - стремящиеся устранить половые признаки во внешнем виде",
+  "Non-binary - отрицающий систему двух полов",
+  "Other - другое",
+  "Pangender - всеобщеполовой",
+  "Trans Female - переходной к женскому половому состоянию",
+  "Trans Male - переходной к мужскому половому состоянию",
+  "Trans Man - переходной к мужчине",
+  "Trans Person - переходной к лицу, вне половой классификации",
+  "Trans Woman - переходной к женщине",
+  "Transexual - транссексуальный",
+  "Transexual Female - женский траннсексуальный",
+  "Transexual Male - мужской транссексуальный",
+  "Transexual Man - мужчина транссексуал",
+  "Transexual Person - лицо траннсексуал",
+  "Transexual Woman - женщина транссексуал",
+  "Transgender Female",
+  "Transgender Male",
+  "Transgender Man",
+  "Transgender Person",
+  "Transgender Woman",
+  "Transmasculine - «за пределами мужского» (фантазии на тему мужского пола)",
+  "Two-spirit - две души, «двудушный» (без негативной коннотации)",
+  "Man",
+  "Woman",
+  "Ты пидор"
+];
+
 const bot = new Telegraf("860469083:AAElj7TvrvxwtOghWazeuucmticDiLDR_38");
 bot.use((ctx, next) => {
   const start = new Date();
@@ -70,6 +124,20 @@ bot.hears(/кто я из наруто/gi, ctx => {
       { source: `${__dirname}/img/${characterNum}.jpg` },
       { caption: characters[characterNum] }
     );
+  } catch (e) {
+    console.error(e);
+    ctx.reply("Что-то сломалось");
+  }
+});
+
+/**
+ * Genders
+ */
+bot.hears(/какой я гендер/gi, ctx => {
+  console.log("какой я гендер");
+  try {
+    const genderNum = Math.floor(Math.random() * genders.length);
+    ctx.reply(genders[genderNum]);
   } catch (e) {
     console.error(e);
     ctx.reply("Что-то сломалось");
