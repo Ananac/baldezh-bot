@@ -174,7 +174,7 @@ bot.hears(/дайте мем/gi, ctx => {
   console.log("дайте мем");
   try {
     https
-      .get("https://meme-api.herokuapp.com/gimme/notinteresting", res => {
+      .get("https://meme-api.herokuapp.com/gimme/dankmemes", res => {
         console.log("statusCode:", res.statusCode);
         console.log("headers:", res.headers);
 
@@ -398,10 +398,6 @@ bot.hears(/айти/i, ctx => {
  * Say goodbye
  */
 bot.hears(/покеда/gi, ctx => ctx.reply("До свидания"));
-
-/**
- * Say goodbye
- */
 bot.hears(/до свидания/gi, ctx => ctx.reply("Покеда"));
 
 /**
@@ -414,9 +410,9 @@ bot.hears(/Quakoosha/gi, ctx =>
 /**
  * Kavo
  */
-bot.hears("каво", ctx =>
-  ctx.replyWithPhoto({ source: `${__dirname}/img/kavo.jpg` })
-);
+// bot.hears("каво", ctx =>
+//   ctx.replyWithPhoto({ source: `${__dirname}/img/kavo.jpg` })
+// );
 
 /**
  * Marginal
