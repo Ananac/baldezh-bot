@@ -202,7 +202,7 @@ bot.hears(/пд/i, ctx => {
   console.log("пд");
   try {
     const scrape = function(callback) {
-      let page = Math.floor(Math.random() * 354);
+      let page = Math.floor(Math.random() * 382);
       const options = {
         method: "GET",
         url: `https://prodota.ru/forum/topic/216714/page/${page}/`
