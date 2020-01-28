@@ -394,18 +394,18 @@ bot.hears(/вирус/i, ctx => {
           "\n\n" +
           "China" +
           "\n" +
-          "Cases:" +
+          "Cases: " +
           (parseInt(mainlandChinaCases) + parseInt(chinaRegionsCases)) +
           "\n" +
-          "Deaths:" +
+          "Deaths: " +
           (parseInt(mainlandChinaDeaths) + parseInt(chinaRegionsDeaths)) +
           "\n\n" +
           "International" +
           "\n" +
-          "Cases:" +
+          "Cases: " +
           internationalCases +
           "\n" +
-          "Deaths:" +
+          "Deaths: " +
           internationalDeaths
       );
     });
