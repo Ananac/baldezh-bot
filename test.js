@@ -19,5 +19,24 @@ const options = {
 cloudscraper(options).then(html => {
   let $ = cheerio.load(html);
   const data = $("#mvp-content-main > p:nth-child(2) > strong").contents().text();
-  console.log(data);
+  const mainlandChinaCases = $("#mvp-content-main > table.wp-block-table.aligncenter.is-style-stripes > tbody > tr:nth-child(32) > td:nth-child(2) > strong").contents().text().replace(',', '');
+  const mainlandChinaDeaths = $("#mvp-content-main > table.wp-block-table.aligncenter.is-style-stripes > tbody > tr:nth-child(32) > td:nth-child(3) > strong").contents().text();
+  const chinaRegionsCases = $("#mvp-content-main > table:nth-child(7) > tbody > tr:nth-child(5) > td:nth-child(2) > strong").contents().text();
+  const chinaRegionsDeaths = $("#mvp-content-main > table:nth-child(7) > tbody > tr:nth-child(5) > td:nth-child(3) > strong").contents().text();
+  const internationalCases = $("#mvp-content-main > table:nth-child(9) > tbody > tr:nth-child(16) > td:nth-child(2) > strong").contents().text();
+  const internationalDeaths = $("#mvp-content-main > table:nth-child(9) > tbody > tr:nth-child(16) > td:nth-child(3) > strong").contents().text();
+
+  console.log(data + 
+    "\n\n" + 
+    "China" + 
+    "\n" + 
+    "Cases:" + (parseInt(mainlandChinaCases) + parseInt(chinaRegionsCases)) +
+    "\n" + 
+    "Deaths:" + (parseInt(mainlandChinaDeaths) + parseInt(chinaRegionsDeaths)) +
+    "\n\n" +
+    "International" +
+    "\n" + 
+    "Cases:" + internationalCases +
+    "\n" + 
+    "Deaths:" + internationalDeaths);
 });
