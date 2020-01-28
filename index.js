@@ -354,6 +354,9 @@ bot.hears(/вирус/i, ctx => {
 
     cloudscraper(options).then(html => {
       let $ = cheerio.load(html);
+      const data = $("#mvp-content-main > p:nth-child(2) > strong")
+        .contents()
+        .text();
       const mainlandChinaCases = $(
         "#mvp-content-main > table.wp-block-table.aligncenter.is-style-stripes > tbody > tr:nth-child(32) > td:nth-child(2) > strong"
       )
@@ -403,7 +406,7 @@ bot.hears(/вирус/i, ctx => {
           internationalCases +
           "\n" +
           "Deaths:" +
-          internationalDeaths
+          internationalрукщDeaths
       );
     });
   } catch (e) {
