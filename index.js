@@ -345,7 +345,7 @@ bot.hears(/гироскоп/i, ctx => {
 /**
  * Coronavirus
  */
-bot.hears(/вирус/i, ctx => {
+bot.hears(/"вирус"/i, ctx => {
   try {
     const options = {
       method: "GET",
