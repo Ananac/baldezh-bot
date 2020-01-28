@@ -406,7 +406,7 @@ bot.hears(/вирус/i, ctx => {
           internationalCases +
           "\n" +
           "Deaths:" +
-          internationalрукщDeaths
+          internationalDeaths
       );
     });
   } catch (e) {
