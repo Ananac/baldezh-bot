@@ -388,7 +388,7 @@ bot.hears(/вирус/i, ctx => {
       )
         .contents()
         .text();
-
+        
       ctx.reply(
         data +
           "\n\n" +
