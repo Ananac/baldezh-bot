@@ -379,12 +379,12 @@ bot.hears(/вирус/i, ctx => {
         .contents()
         .text();
       const internationalCases = $(
-        "#mvp-content-main > table:nth-child(9) > tbody > tr:nth-child(16) > td:nth-child(2) > strong"
+        "#mvp-content-main > table:nth-child(9) > tbody > tr:nth-child(17) > td:nth-child(2) > strong"
       )
         .contents()
         .text();
       const internationalDeaths = $(
-        "#mvp-content-main > table:nth-child(9) > tbody > tr:nth-child(16) > td:nth-child(3) > strong"
+        "#mvp-content-main > table:nth-child(9) > tbody > tr:nth-child(17) > td:nth-child(3) > strong"
       )
         .contents()
         .text();
