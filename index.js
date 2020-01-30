@@ -371,7 +371,7 @@ bot.hears(/вирус/i, ctx => {
             totalDeaths = totalDeaths + parseInt(obj[num].death);
           }
           data =
-            data + ("\n" + "🤒" + totalCases + " ☠" + totalDeaths + " Total");
+            data + ("________\n" + "🤒" + totalCases + " ☠" + totalDeaths + " - Total");
             ctx.reply(data);
         });
       })
