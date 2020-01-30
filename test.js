@@ -23,15 +23,15 @@ https
     let data;
 
     for(let num in obj) {
-      data = data + ("🤒 " + obj[num].cases);
+      data += ("🤒 " + obj[num].cases);
       if ( parseInt(obj[num].death) != 0) {
-        data = data + (" ☠" + obj[num].death);
+        data += (" ☠" + obj[num].death);
       }
-      data = data + (" " + obj[num].region + "\n");
-      totalCases = totalCases + parseInt(obj[num].cases);
-      totalDeaths = totalDeaths + parseInt(obj[num].death);
+      data += (" " + obj[num].region + "\n");
+      totalCases += parseInt(obj[num].cases);
+      totalDeaths += parseInt(obj[num].death);
    }
-   data = data + ("\n" + "🤒 " + totalCases + " ☠" + totalDeaths + " Total");
+   data += ("\n" + "🤒 " + totalCases + " ☠" + totalDeaths + " Total");
    console.log(data);
 
     // console.log({ url: memeUrl }, { caption: memeTitle });

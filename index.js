@@ -358,22 +358,21 @@ bot.hears(/вирус/i, ctx => {
           let data = "";
 
           for (let num in obj) {
-            data = data + ("🤒" + obj[num].cases);
+            data += "🤒" + obj[num].cases;
             if (parseInt(obj[num].death) != 0) {
-              data = data + (" ☠" + obj[num].death);
+              data += " ☠" + obj[num].death;
             }
-            data = data + (" - " + obj[num].region + "\n");
-            totalCases = totalCases + parseInt(obj[num].cases);
-            totalDeaths = totalDeaths + parseInt(obj[num].death);
+            data += " - " + obj[num].region + "\n";
+            totalCases += parseInt(obj[num].cases);
+            totalDeaths += parseInt(obj[num].death);
           }
-          data =
-            data +
-            ("________________________\n" +
-              "🤒" +
-              totalCases +
-              " ☠" +
-              totalDeaths +
-              " - Total");
+          data +=
+            "________________________\n" +
+            "🤒" +
+            totalCases +
+            " ☠" +
+            totalDeaths +
+            " - Total";
           ctx.reply(data);
         });
       })
