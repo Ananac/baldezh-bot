@@ -14,9 +14,6 @@ const cloudscraper = require("cloudscraper");
 
 https
 .get("https://coronavirus.zone/data.json?1580369390169", res => {
-  // console.log("statusCode:", res.statusCode);
-  // console.log("headers:", res.headers);
-
   res.on("data", d => {
     process.stdout.write(d);
     const obj = JSON.parse(d);
@@ -26,7 +23,11 @@ https
     let data;
 
     for(let num in obj) {
-      data = data + ("🤒 " + obj[num].cases + " ☠" + obj[num].death + " " + obj[num].region + "\n");
+      data = data + ("🤒 " + obj[num].cases);
+      if ( parseInt(obj[num].death) != 0) {
+        data = data + (" ☠" + obj[num].death);
+      }
+      data = data + (" " + obj[num].region + "\n");
       totalCases = totalCases + parseInt(obj[num].cases);
       totalDeaths = totalDeaths + parseInt(obj[num].death);
    }
