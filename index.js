@@ -355,7 +355,7 @@ bot.hears(/вирус/i, ctx => {
 
           let totalCases = 0;
           let totalDeaths = 0;
-          let data;
+          let data = "";
 
           for (let num in obj) {
             data =
@@ -364,14 +364,14 @@ bot.hears(/вирус/i, ctx => {
                 obj[num].cases +
                 " ☠" +
                 obj[num].death +
-                " " +
+                " - " +
                 obj[num].region +
                 "\n");
             totalCases = totalCases + parseInt(obj[num].cases);
             totalDeaths = totalDeaths + parseInt(obj[num].death);
           }
           data =
-            data + ("\n" + "🤒 " + totalCases + " ☠" + totalDeaths + " Total");
+            data + ("\n" + "🤒" + totalCases + " ☠" + totalDeaths + " Total");
             ctx.reply(data);
         });
       })
