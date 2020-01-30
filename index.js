@@ -347,68 +347,37 @@ bot.hears(/гироскоп/i, ctx => {
  */
 bot.hears(/вирус/i, ctx => {
   try {
-    const options = {
-      method: "GET",
-      url: `https://bnonews.com/index.php/2020/01/the-latest-coronavirus-cases/`
-    };
+    https
+      .get("https://coronavirus.zone/data.json?1580369390169", res => {
+        res.on("data", d => {
+          process.stdout.write(d);
+          const obj = JSON.parse(d);
 
-    cloudscraper(options).then(html => {
-      let $ = cheerio.load(html);
-      const data = $("#mvp-content-main > p:nth-child(2) > strong")
-        .contents()
-        .text();
-      const mainlandChinaCases = $(
-        "#mvp-content-main > table.wp-block-table.aligncenter.is-style-stripes > tbody > tr:nth-child(33) > td:nth-child(2) > strong"
-      )
-        .contents()
-        .text()
-        .replace(",", "");
-      const mainlandChinaDeaths = $(
-        "#mvp-content-main > table.wp-block-table.aligncenter.is-style-stripes > tbody > tr:nth-child(33) > td:nth-child(3) > strong"
-      )
-        .contents()
-        .text();
-      const chinaRegionsCases = $(
-        "#mvp-content-main > table:nth-child(7) > tbody > tr:nth-child(5) > td:nth-child(2) > strong"
-      )
-        .contents()
-        .text();
-      const chinaRegionsDeaths = $(
-        "#mvp-content-main > table:nth-child(7) > tbody > tr:nth-child(5) > td:nth-child(3) > strong"
-      )
-        .contents()
-        .text();
-      const internationalCases = $(
-        "#mvp-content-main > table:nth-child(9) > tbody > tr:nth-child(18) > td:nth-child(2) > strong"
-      )
-        .contents()
-        .text();
-      const internationalDeaths = $(
-        "#mvp-content-main > table:nth-child(9) > tbody > tr:nth-child(18) > td:nth-child(3) > strong"
-      )
-        .contents()
-        .text();
+          let totalCases = 0;
+          let totalDeaths = 0;
+          let data;
 
-      ctx.reply(
-        data +
-          "\n\n" +
-          "China" +
-          "\n" +
-          "Cases: " +
-          (parseInt(mainlandChinaCases) + parseInt(chinaRegionsCases)) +
-          "\n" +
-          "Deaths: " +
-          (parseInt(mainlandChinaDeaths) + parseInt(chinaRegionsDeaths)) +
-          "\n\n" +
-          "International" +
-          "\n" +
-          "Cases: " +
-          internationalCases +
-          "\n" +
-          "Deaths: " +
-          internationalDeaths
-      );
-    });
+          for (let num in obj) {
+            data =
+              data +
+              ("🤒 " +
+                obj[num].cases +
+                " ☠" +
+                obj[num].death +
+                " " +
+                obj[num].region +
+                "\n");
+            totalCases = totalCases + parseInt(obj[num].cases);
+            totalDeaths = totalDeaths + parseInt(obj[num].death);
+          }
+          data =
+            data + ("\n" + "🤒 " + totalCases + " ☠" + totalDeaths + " Total");
+            ctx.reply(data);
+        });
+      })
+      .on("error", e => {
+        console.error(e);
+      });
   } catch (e) {
     console.error(e);
     ctx.reply("Что-то сломалось");
