@@ -358,13 +358,13 @@ bot.hears(/вирус/i, ctx => {
         .contents()
         .text();
       const mainlandChinaCases = $(
-        "#mvp-content-main > table.wp-block-table.aligncenter.is-style-stripes > tbody > tr:nth-child(32) > td:nth-child(2) > strong"
+        "#mvp-content-main > table.wp-block-table.aligncenter.is-style-stripes > tbody > tr:nth-child(33) > td:nth-child(2) > strong"
       )
         .contents()
         .text()
         .replace(",", "");
       const mainlandChinaDeaths = $(
-        "#mvp-content-main > table.wp-block-table.aligncenter.is-style-stripes > tbody > tr:nth-child(32) > td:nth-child(3) > strong"
+        "#mvp-content-main > table.wp-block-table.aligncenter.is-style-stripes > tbody > tr:nth-child(33) > td:nth-child(3) > strong"
       )
         .contents()
         .text();
@@ -379,16 +379,16 @@ bot.hears(/вирус/i, ctx => {
         .contents()
         .text();
       const internationalCases = $(
-        "#mvp-content-main > table:nth-child(9) > tbody > tr:nth-child(17) > td:nth-child(2) > strong"
+        "#mvp-content-main > table:nth-child(9) > tbody > tr:nth-child(18) > td:nth-child(2) > strong"
       )
         .contents()
         .text();
       const internationalDeaths = $(
-        "#mvp-content-main > table:nth-child(9) > tbody > tr:nth-child(17) > td:nth-child(3) > strong"
+        "#mvp-content-main > table:nth-child(9) > tbody > tr:nth-child(18) > td:nth-child(3) > strong"
       )
         .contents()
         .text();
-        
+
       ctx.reply(
         data +
           "\n\n" +
