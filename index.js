@@ -347,8 +347,9 @@ bot.hears(/гироскоп/i, ctx => {
  */
 bot.hears(/вирус/i, ctx => {
   try {
+    let timeStamp = Math.round(new Date().getTime()/1000.0);
     https
-      .get("https://coronavirus.zone/data.json?1580369390169", res => {
+    .get(`https://coronavirus.zone/data.json?${timeStamp}`, res => {
         res.on("data", d => {
           process.stdout.write(d);
           const obj = JSON.parse(d);

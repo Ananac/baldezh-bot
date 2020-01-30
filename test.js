@@ -11,9 +11,9 @@ const cloudscraper = require("cloudscraper");
 // let y = words[1];
 // console.log(y);
 
-
+const timeStamp = Math.round(new Date().getTime()/1000.0);
 https
-.get("https://coronavirus.zone/data.json?1580369390169", res => {
+.get(`https://coronavirus.zone/data.json?${timeStamp}`, res => {
   res.on("data", d => {
     process.stdout.write(d);
     const obj = JSON.parse(d);
@@ -35,6 +35,8 @@ https
    console.log(data);
 
     // console.log({ url: memeUrl }, { caption: memeTitle });
+
+
   });
 })
 .on("error", e => {
