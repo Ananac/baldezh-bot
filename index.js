@@ -362,7 +362,7 @@ bot.hears(/вирус/i, ctx => {
             if (parseInt(obj[num].death) != 0) {
               data = data + (" ☠" + obj[num].death);
             }
-            data = data + (" " + obj[num].region + "\n");
+            data = data + (" - " + obj[num].region + "\n");
             totalCases = totalCases + parseInt(obj[num].cases);
             totalDeaths = totalDeaths + parseInt(obj[num].death);
           }
