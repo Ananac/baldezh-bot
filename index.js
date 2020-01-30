@@ -358,7 +358,7 @@ bot.hears(/вирус/i, ctx => {
           let data = "";
 
           for (let num in obj) {
-            data = data + ("🤒 " + obj[num].cases);
+            data = data + ("🤒" + obj[num].cases);
             if (parseInt(obj[num].death) != 0) {
               data = data + (" ☠" + obj[num].death);
             }
