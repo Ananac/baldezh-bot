@@ -34,6 +34,10 @@ https
    data += ("\n" + "🤒 " + totalCases + " ☠" + totalDeaths + " Total");
    console.log(data);
 
+
+   const timer = ms => new Promise( res => setTimeout(res, ms));
+   timer(3000).then(_=>console.log("aga"));
+
     // console.log({ url: memeUrl }, { caption: memeTitle });
 
 

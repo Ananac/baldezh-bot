@@ -462,8 +462,8 @@ bot.hears(/маргинал/gi, ctx =>
  * Da
  */
 bot.hears(/да\?/i, ctx => { 
-  await new Promise(r => setTimeout(r, 3000));
-  ctx.reply("да")
+  const timer = ms => new Promise( res => setTimeout(res, ms));
+   timer(3000).then(_=>ctx.reply("да"));  
 });
 
 
