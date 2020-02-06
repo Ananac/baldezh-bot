@@ -457,6 +457,13 @@ bot.hears(/маргинал/gi, ctx =>
   ctx.replyWithPhoto({ source: `${__dirname}/img/marginal.jpg` })
 );
 
+
+/**
+ * Da
+ */
+bot.hears(/да?/gi, ctx => ctx.reply("да"));
+
+
 /**
  * Sorry
  */
