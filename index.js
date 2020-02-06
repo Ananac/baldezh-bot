@@ -461,7 +461,10 @@ bot.hears(/маргинал/gi, ctx =>
 /**
  * Da
  */
-bot.hears(/да\?/i, ctx => ctx.reply("да"));
+bot.hears(/да\?/i, ctx => { 
+  await new Promise(r => setTimeout(r, 3000));
+  ctx.reply("да")
+});
 
 
 /**
