@@ -461,7 +461,7 @@ bot.hears(/маргинал/gi, ctx =>
 /**
  * Da
  */
-bot.hears(/да?/gi, ctx => ctx.reply("да"));
+bot.hears(/ да?/gi, ctx => ctx.reply("да"));
 
 
 /**
