@@ -201,7 +201,7 @@ bot.hears(/пд/i, ctx => {
   console.log("пд");
   try {
     const scrape = function(callback) {
-      let page = Math.floor(Math.random() * 410);
+      let page = Math.floor(Math.random() * 429);
       const options = {
         method: "GET",
         url: `https://prodota.ru/forum/topic/216714/page/${page}/`
@@ -217,7 +217,9 @@ bot.hears(/пд/i, ctx => {
           if (
             pdMemeUrl !== "" &&
             pdMemeUrl !== undefined &&
-            !pdMemeUrl.match(/prodota/gi)
+            !pdMemeUrl.match(/prodota/gi)&&
+            !pdMemeUrl.match(/radikal/gi)
+
           ) {
             pdMemes[pos] = pdMemeUrl;
             console.log(pos + ": " + pdMemeUrl);
@@ -457,15 +459,13 @@ bot.hears(/маргинал/gi, ctx =>
   ctx.replyWithPhoto({ source: `${__dirname}/img/marginal.jpg` })
 );
 
-
 /**
  * Da
  */
-bot.hears(/да\?/i, ctx => { 
-  const timer = ms => new Promise( res => setTimeout(res, ms));
-   timer(3000).then(_=>ctx.reply("да"));  
+bot.hears(/да\?/i, ctx => {
+  const timer = ms => new Promise(res => setTimeout(res, ms));
+  timer(3000).then(_ => ctx.reply("да"));
 });
-
 
 /**
  * Sorry
