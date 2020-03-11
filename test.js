@@ -13,18 +13,18 @@ const cloudscraper = require("cloudscraper");
 
 
 
-    const options = {
-      method: "GET",
-      url: `http://www.profinance.ru/`
-    };
+const options = {
+  method: "GET",
+  url: `http://www.profinance.ru/`
+};
 
-    cloudscraper(options).then(html => {
-      let $ = cheerio.load(html);
-      const usd = $("body > table:nth-child(2) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)");
-      const euro = $("body > table:nth-child(2) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(2)");
+cloudscraper(options).then(html => {
+  let $ = cheerio.load(html);
+  const usd = $("body > table:nth-child(2) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)");
+  const euro = $("body > table:nth-child(2) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(2)");
 
-      console.log("USD " + usd.text() +"\nEuro " + euro.text());
-    });
+  console.log("USD " + usd.text() +"\nEuro " + euro.text());
+});
 
 
 

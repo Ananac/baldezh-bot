@@ -280,10 +280,10 @@ bot.hears(/валюта/gi, ctx => {
 
     cloudscraper(options).then(html => {
       let $ = cheerio.load(html);
-      const usd = $("body > table:nth-child(2) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)");
-      const euro = $("body > table:nth-child(2) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(2)");
+      const usdForex = $("body > table:nth-child(2) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)");
+      const euroForex = $("body > table:nth-child(2) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(2)");
 
-      console.log("Forex\nUSD " + usd.text() +"\nEuro " + euro.text());
+      ctx.reply("Forex\nUSD " + usdForex.text() +"\nEuro " + euroForex.text());
     });
   } catch (e) {
     console.error(e);
