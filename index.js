@@ -271,7 +271,7 @@ bot.hears(/стетхем/gi, ctx => {
 /**
  * Currencies
  */
-bot.hears(/валюта/gi, ctx => {
+bot.hears(/stonks/gi, ctx => {
   try {
     const options = {
       method: "GET",
