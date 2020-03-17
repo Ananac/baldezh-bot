@@ -217,9 +217,8 @@ bot.hears(/пд/i, ctx => {
           if (
             pdMemeUrl !== "" &&
             pdMemeUrl !== undefined &&
-            !pdMemeUrl.match(/prodota/gi)&&
+            !pdMemeUrl.match(/prodota/gi) &&
             !pdMemeUrl.match(/radikal/gi)
-
           ) {
             pdMemes[pos] = pdMemeUrl;
             console.log(pos + ": " + pdMemeUrl);
@@ -280,10 +279,14 @@ bot.hears(/stonks/gi, ctx => {
 
     cloudscraper(options).then(html => {
       let $ = cheerio.load(html);
-      const usdForex = $("body > table:nth-child(2) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)");
-      const euroForex = $("body > table:nth-child(2) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(2)");
+      const usdForex = $(
+        "body > table:nth-child(2) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)"
+      );
+      const euroForex = $(
+        "body > table:nth-child(2) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(2)"
+      );
 
-      ctx.reply("Forex\nUSD " + usdForex.text() +"\nEuro " + euroForex.text());
+      ctx.reply("Forex\nUSD " + usdForex.text() + "\nEuro " + euroForex.text());
     });
   } catch (e) {
     console.error(e);
@@ -370,7 +373,7 @@ bot.hears(/гироскоп/i, ctx => {
 /**
  * Coronavirus
  */
-bot.hears(/вирус/i, ctx => {
+bot.hears("вирус", ctx => {
   try {
     let timeStamp = Math.round(new Date().getTime() / 1000.0);
     https
