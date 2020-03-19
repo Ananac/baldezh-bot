@@ -79,7 +79,7 @@
       "version": "0.12.0"
     },
     "cheerio": "^1.0.0-rc.3",
-    "cloudscraper": "^4.5.0",
+    "cloudscraper": "^4.6.0",
     "combined-stream": {
       "integrity": "sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==",
       "requires": {
@@ -441,7 +441,7 @@
       "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.6.tgz",
       "version": "2.3.6"
     },
-    "request": "^2.88.0",
+    "request": "^2.88.2",
     "request-promise": {
       "integrity": "sha512-8wgMrvE546PzbR5WbYxUQogUnUDfM0S7QIFZMID+J73vdFARkFy+HElj4T+MWYhpXwlLp0EQ8Zoj8xUA0he4Vg==",
       "requires": {
@@ -507,7 +507,7 @@
       "resolved": "https://registry.npmjs.org/string_decoder/-/string_decoder-1.1.1.tgz",
       "version": "1.1.1"
     },
-    "telegraf": "^3.34.1",
+    "telegraf": "^3.36.0",
     "tough-cookie": {
       "dependencies": {
         "punycode": {
