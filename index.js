@@ -104,8 +104,12 @@ bot.start(ctx => ctx.reply("Дарова!"));
 bot.help(ctx =>
   ctx.reply(
     '"Кто я из Наруто" - кто ты из Наруто\n' +
+    '"Какой я гендер" - какой ты гендер\n' +
+    '"Stonks" - неточный курс валют\n' +
+    '"Гироскоп *знак зодиака*" - гороскоп на сегодня\n' +
+    '"Гироскоп *знак зодиака*" - гороскоп на сегодня\n' +
       '"Дайте мем" - мем из /r/dankmemes\n' +
-      '"Айти" - рандомный коммент с ebanoe.it\n' +
+      // '"Айти" - рандомный коммент с ebanoe.it\n' +
       '"пд" - рандомная картинка из треда со смешными картинками prodota.ru\n' +
       '"Quakoosha" - Quakoosha\n' +
       '"каво" - каво\n' +
@@ -501,9 +505,9 @@ bot.hears("Извините", ctx => ctx.reply("Извинил"));
 /**
  * Kavo
  */
-// bot.hears("каво", ctx =>
-//   ctx.replyWithPhoto({ source: `${__dirname}/img/kavo.jpg` })
-// );
+bot.hears("каво", ctx =>
+  ctx.replyWithPhoto({ source: `${__dirname}/img/kavo.jpg` })
+);
 
 /**
  * Flexxxxx
