@@ -154,7 +154,7 @@ bot.hears(/артом/gi, ctx => {
   console.log("артом");
   try {
     today = new Date();
-    const artemIsBack = new Date(2020, 8, 31);
+    const artemIsBack = new Date(2020, 7, 31);
     const one_day = 1000 * 60 * 60 * 24;
     const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / one_day);
     ctx.reply(
