@@ -154,7 +154,7 @@ bot.hears(/артом/gi, ctx => {
   console.log("артом");
   try {
     today = new Date();
-    const artemIsBack = new Date(2019, 9, 20);
+    const artemIsBack = new Date(2020, 9, 31);
     const one_day = 1000 * 60 * 60 * 24;
     const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / one_day);
     ctx.reply(
@@ -204,7 +204,7 @@ bot.hears(/пд/i, ctx => {
   console.log("пд");
   try {
     const scrape = function(callback) {
-      let page = Math.floor(Math.random() * 746);
+      let page = Math.floor(Math.random() * 809);
       const options = {
         method: "GET",
         url: `https://prodota.ru/forum/topic/216714/page/${page}/`
