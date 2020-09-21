@@ -87,7 +87,6 @@
     },
     "cheerio": "^1.0.0-rc.3",
     "cloudscraper": "^4.6.0",
-    "lock-verify": "^2.2.1",
     "combined-stream": {
       "integrity": "sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==",
       "requires": {
@@ -270,6 +269,7 @@
       "resolved": "https://registry.npmjs.org/http-signature/-/http-signature-1.2.0.tgz",
       "version": "1.2.0"
     },
+    "https": "^1.0.0",
     "inherits": {
       "integrity": "sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==",
       "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz",
