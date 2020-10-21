@@ -1,8 +1,8 @@
 const Telegraf = require("telegraf");
 const https = require("https");
-const cheerio = require("cheerio");
+// const cheerio = require("cheerio");
 const pluralize = require("numeralize-ru").pluralize;
-const cloudscraper = require("cloudscraper");
+// const cloudscraper = require("cloudscraper");
 
 let comments = [];
 let pdMemes = [];
@@ -197,276 +197,276 @@ bot.hears(/дайте мем/gi, ctx => {
   }
 });
 
-/**
- * Random meme from prodota
- */
-bot.hears(/пд/i, ctx => {
-  console.log("пд");
-  try {
-    const scrape = function(callback) {
-      let page = Math.floor(Math.random() * 910);
-      const options = {
-        method: "GET",
-        url: `https://prodota.ru/forum/topic/216714/page/${page}/`
-      };
-      cloudscraper(options).then(html => {
-        let $ = cheerio.load(html);
-        const links = $(".ipsType_normal p");
-        let pos = 0;
-        $(links).each(function() {
-          const pdMemeUrl = $(this)
-            .find("img")
-            .attr("data-src");
-          if (
-            pdMemeUrl !== "" &&
-            pdMemeUrl !== undefined &&
-            !pdMemeUrl.match(/prodota/gi) &&
-            !pdMemeUrl.match(/radikal/gi)
-          ) {
-            pdMemes[pos] = pdMemeUrl;
-            console.log(pos + ": " + pdMemeUrl);
-            pos++;
-          }
-        });
-        if (callback) callback();
-      });
-    };
+// /**
+//  * Random meme from prodota
+//  */
+// bot.hears(/пд/i, ctx => {
+//   console.log("пд");
+//   try {
+//     const scrape = function(callback) {
+//       let page = Math.floor(Math.random() * 910);
+//       const options = {
+//         method: "GET",
+//         url: `https://prodota.ru/forum/topic/216714/page/${page}/`
+//       };
+//       cloudscraper(options).then(html => {
+//         let $ = cheerio.load(html);
+//         const links = $(".ipsType_normal p");
+//         let pos = 0;
+//         $(links).each(function() {
+//           const pdMemeUrl = $(this)
+//             .find("img")
+//             .attr("data-src");
+//           if (
+//             pdMemeUrl !== "" &&
+//             pdMemeUrl !== undefined &&
+//             !pdMemeUrl.match(/prodota/gi) &&
+//             !pdMemeUrl.match(/radikal/gi)
+//           ) {
+//             pdMemes[pos] = pdMemeUrl;
+//             console.log(pos + ": " + pdMemeUrl);
+//             pos++;
+//           }
+//         });
+//         if (callback) callback();
+//       });
+//     };
 
-    scrape(function() {
-      randomComment();
-    });
+//     scrape(function() {
+//       randomComment();
+//     });
 
-    const randomComment = function() {
-      const x = Math.floor(Math.random() * pdMemes.length);
-      console.log("x = " + x);
-      ctx.replyWithPhoto({ url: pdMemes[x] });
-      pdMemes.length = 0;
-    };
-  } catch (e) {
-    console.error(e);
-    ctx.reply("Что-то сломалось");
-  }
-});
+//     const randomComment = function() {
+//       const x = Math.floor(Math.random() * pdMemes.length);
+//       console.log("x = " + x);
+//       ctx.replyWithPhoto({ url: pdMemes[x] });
+//       pdMemes.length = 0;
+//     };
+//   } catch (e) {
+//     console.error(e);
+//     ctx.reply("Что-то сломалось");
+//   }
+// });
 
-/**
- * Smart quote
- */
-bot.hears(/стетхем/gi, ctx => {
-  try {
-    const options = {
-      method: "GET",
-      url: `https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=xml&lang=ru`
-    };
+// /**
+//  * Smart quote
+//  */
+// bot.hears(/стетхем/gi, ctx => {
+//   try {
+//     const options = {
+//       method: "GET",
+//       url: `https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=xml&lang=ru`
+//     };
 
-    cloudscraper(options).then(html => {
-      let $ = cheerio.load(html);
-      const quoteText = $("quotetext");
-      const quoteAuthor = $("quoteauthor");
-      ctx.reply(quoteText.text() + "\n\n" + quoteAuthor.text());
-    });
-  } catch (e) {
-    console.error(e);
-    ctx.reply("Что-то сломалось");
-  }
-});
+//     cloudscraper(options).then(html => {
+//       let $ = cheerio.load(html);
+//       const quoteText = $("quotetext");
+//       const quoteAuthor = $("quoteauthor");
+//       ctx.reply(quoteText.text() + "\n\n" + quoteAuthor.text());
+//     });
+//   } catch (e) {
+//     console.error(e);
+//     ctx.reply("Что-то сломалось");
+//   }
+// });
 
-/**
- * Currencies
- */
-bot.hears(/stonks/gi, ctx => {
-  try {
-    const options = {
-      method: "GET",
-      url: `http://www.profinance.ru/`
-    };
+// /**
+//  * Currencies
+//  */
+// bot.hears(/stonks/gi, ctx => {
+//   try {
+//     const options = {
+//       method: "GET",
+//       url: `http://www.profinance.ru/`
+//     };
 
-    cloudscraper(options).then(html => {
-      let $ = cheerio.load(html);
-      const usdForex = $(
-        "body > table:nth-child(2) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)"
-      );
-      const euroForex = $(
-        "body > table:nth-child(2) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(9) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(2)"
-      );
+//     cloudscraper(options).then(html => {
+//       let $ = cheerio.load(html);
+//       const usdForex = $(
+//         "body > table:nth-child(2) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)"
+//       );
+//       const euroForex = $(
+//         "body > table:nth-child(2) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(9) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(2)"
+//       );
 
-      ctx.reply("Forex\nUSD " + usdForex.text() + "\nEuro " + euroForex.text());
-    });
-  } catch (e) {
-    console.error(e);
-    ctx.reply("Что-то сломалось");
-  }
-});
+//       ctx.reply("Forex\nUSD " + usdForex.text() + "\nEuro " + euroForex.text());
+//     });
+//   } catch (e) {
+//     console.error(e);
+//     ctx.reply("Что-то сломалось");
+//   }
+// });
 
-/**
- * Gyroscooter
- */
-bot.hears(/гироскоп/i, ctx => {
-  try {
-    let words = ctx.update.message.text.split(" ");
-    let zodiacSign = words[1];
-    let zodiacUrl;
-    switch (zodiacSign) {
-      case "овен":
-        zodiacUrl = "aries";
-        break;
-      case "телець":
-      case "телец":
-        zodiacUrl = "taurus";
-        break;
-      case "близнюки":
-      case "близнята":
-      case "близнецы":
-        zodiacUrl = "gemini";
-        break;
-      case "рак":
-        zodiacUrl = "cancer";
-        break;
-      case "лев":
-        zodiacUrl = "leo";
-        break;
-      case "дiва":
-      case "дева":
-        zodiacUrl = "virgo";
-        break;
-      case "терези":
-      case "весы":
-        zodiacUrl = "libra";
-        break;
-      case "скорпiон":
-      case "скорпион":
-        zodiacUrl = "scorpio";
-        break;
-      case "стрілець":
-      case "стрелец":
-        zodiacUrl = "sagittarius";
-        break;
-      case "козоріг":
-      case "козерог":
-        zodiacUrl = "capricorn";
-        break;
-      case "водолiй":
-      case "водолей":
-        zodiacUrl = "aquarius";
-        break;
-      case "риби":
-      case "рыбы":
-        zodiacUrl = "pisces";
-        break;
-      default:
-        ctx.replyWithSticker("CAADAgADUgADq1fEC5C5TuFnWpzfFgQ");
-        return;
-    }
+// /**
+//  * Gyroscooter
+//  */
+// bot.hears(/гироскоп/i, ctx => {
+//   try {
+//     let words = ctx.update.message.text.split(" ");
+//     let zodiacSign = words[1];
+//     let zodiacUrl;
+//     switch (zodiacSign) {
+//       case "овен":
+//         zodiacUrl = "aries";
+//         break;
+//       case "телець":
+//       case "телец":
+//         zodiacUrl = "taurus";
+//         break;
+//       case "близнюки":
+//       case "близнята":
+//       case "близнецы":
+//         zodiacUrl = "gemini";
+//         break;
+//       case "рак":
+//         zodiacUrl = "cancer";
+//         break;
+//       case "лев":
+//         zodiacUrl = "leo";
+//         break;
+//       case "дiва":
+//       case "дева":
+//         zodiacUrl = "virgo";
+//         break;
+//       case "терези":
+//       case "весы":
+//         zodiacUrl = "libra";
+//         break;
+//       case "скорпiон":
+//       case "скорпион":
+//         zodiacUrl = "scorpio";
+//         break;
+//       case "стрілець":
+//       case "стрелец":
+//         zodiacUrl = "sagittarius";
+//         break;
+//       case "козоріг":
+//       case "козерог":
+//         zodiacUrl = "capricorn";
+//         break;
+//       case "водолiй":
+//       case "водолей":
+//         zodiacUrl = "aquarius";
+//         break;
+//       case "риби":
+//       case "рыбы":
+//         zodiacUrl = "pisces";
+//         break;
+//       default:
+//         ctx.replyWithSticker("CAADAgADUgADq1fEC5C5TuFnWpzfFgQ");
+//         return;
+//     }
 
-    const options = {
-      method: "GET",
-      url: `http://horo.tochka.net/ua/horoscopes/${zodiacUrl}`
-    };
+//     const options = {
+//       method: "GET",
+//       url: `http://horo.tochka.net/ua/horoscopes/${zodiacUrl}`
+//     };
 
-    cloudscraper(options).then(html => {
-      let $ = cheerio.load(html);
-      const quoteText = $("#Article p");
-      ctx.reply(quoteText.text());
-    });
-  } catch (e) {
-    console.error(e);
-    ctx.reply("Что-то сломалось");
-  }
-});
+//     cloudscraper(options).then(html => {
+//       let $ = cheerio.load(html);
+//       const quoteText = $("#Article p");
+//       ctx.reply(quoteText.text());
+//     });
+//   } catch (e) {
+//     console.error(e);
+//     ctx.reply("Что-то сломалось");
+//   }
+// });
 
-/**
- * Coronavirus
- */
-bot.hears("вирус", ctx => {
-  try {
-    let timeStamp = Math.round(new Date().getTime() / 1000.0);
-    https
-      .get(`https://coronavirus.zone/data.json?${timeStamp}`, res => {
-        res.on("data", d => {
-          process.stdout.write(d);
-          const obj = JSON.parse(d);
+// /**
+//  * Coronavirus
+//  */
+// bot.hears("вирус", ctx => {
+//   try {
+//     let timeStamp = Math.round(new Date().getTime() / 1000.0);
+//     https
+//       .get(`https://coronavirus.zone/data.json?${timeStamp}`, res => {
+//         res.on("data", d => {
+//           process.stdout.write(d);
+//           const obj = JSON.parse(d);
 
-          let totalCases = 0;
-          let totalDeaths = 0;
-          let data = "";
+//           let totalCases = 0;
+//           let totalDeaths = 0;
+//           let data = "";
 
-          for (let num in obj) {
-            data += "🤒" + obj[num].cases;
-            if (parseInt(obj[num].death) != 0) {
-              data += " ☠" + obj[num].death;
-            }
-            data += " - " + obj[num].region + "\n";
-            totalCases += parseInt(obj[num].cases);
-            totalDeaths += parseInt(obj[num].death);
-          }
-          data +=
-            "________________________\n" +
-            "🤒" +
-            totalCases +
-            " ☠" +
-            totalDeaths +
-            " - Total";
-          ctx.reply(data);
-        });
-      })
-      .on("error", e => {
-        console.error(e);
-      });
-  } catch (e) {
-    console.error(e);
-    ctx.reply("Что-то сломалось");
-  }
-});
+//           for (let num in obj) {
+//             data += "🤒" + obj[num].cases;
+//             if (parseInt(obj[num].death) != 0) {
+//               data += " ☠" + obj[num].death;
+//             }
+//             data += " - " + obj[num].region + "\n";
+//             totalCases += parseInt(obj[num].cases);
+//             totalDeaths += parseInt(obj[num].death);
+//           }
+//           data +=
+//             "________________________\n" +
+//             "🤒" +
+//             totalCases +
+//             " ☠" +
+//             totalDeaths +
+//             " - Total";
+//           ctx.reply(data);
+//         });
+//       })
+//       .on("error", e => {
+//         console.error(e);
+//       });
+//   } catch (e) {
+//     console.error(e);
+//     ctx.reply("Что-то сломалось");
+//   }
+// });
 
-/**
- * Random comment from ebanoe.it
- */
-bot.hears(/айти/i, ctx => {
-  console.log("айти");
-  const cloudscraperSsl = require("cloudscraper").defaults({
-    agentOptions: {
-      ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256"
-    }
-  });
-  try {
-    const options = {
-      method: "GET",
-      url: "https://ebanoe.it/2019/10/06/nerds-essense/"
-    };
+// /**
+//  * Random comment from ebanoe.it
+//  */
+// bot.hears(/айти/i, ctx => {
+//   console.log("айти");
+//   const cloudscraperSsl = require("cloudscraper").defaults({
+//     agentOptions: {
+//       ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256"
+//     }
+//   });
+//   try {
+//     const options = {
+//       method: "GET",
+//       url: "https://ebanoe.it/2019/10/06/nerds-essense/"
+//     };
 
-    const scrape = function(callback) {
-      cloudscraperSsl(options).then(html => {
-        let $ = cheerio.load(html);
-        const links = $(".comment-body p");
-        $(links).each(function(i, link) {
-          const comment = $(this)
-            .contents()
-            .text();
-          if (comment !== undefined && comment !== "") {
-            comments[i] = comment;
-          }
-        });
-        if (callback) callback();
-      });
-    };
+//     const scrape = function(callback) {
+//       cloudscraperSsl(options).then(html => {
+//         let $ = cheerio.load(html);
+//         const links = $(".comment-body p");
+//         $(links).each(function(i, link) {
+//           const comment = $(this)
+//             .contents()
+//             .text();
+//           if (comment !== undefined && comment !== "") {
+//             comments[i] = comment;
+//           }
+//         });
+//         if (callback) callback();
+//       });
+//     };
 
-    scrape(function() {
-      randomComment();
-    });
+//     scrape(function() {
+//       randomComment();
+//     });
 
-    const randomComment = function() {
-      const x = Math.floor(Math.random() * comments.length);
-      if (comments[x] === undefined || comments[x] === "") {
-        console.log("Empty comment, randomming new...");
-        randomComment();
-      } else {
-        ctx.reply(comments[x]);
-      }
-    };
-  } catch (e) {
-    console.error(e);
-    ctx.reply("Что-то сломалось");
-  }
-});
+//     const randomComment = function() {
+//       const x = Math.floor(Math.random() * comments.length);
+//       if (comments[x] === undefined || comments[x] === "") {
+//         console.log("Empty comment, randomming new...");
+//         randomComment();
+//       } else {
+//         ctx.reply(comments[x]);
+//       }
+//     };
+//   } catch (e) {
+//     console.error(e);
+//     ctx.reply("Что-то сломалось");
+//   }
+// });
 
 /**
  * Say goodbye
