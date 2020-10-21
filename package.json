@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "https": "^1.0.0",
     "numeralize-ru": "^1.0.1",
     "telegraf": "^3.38.0"
