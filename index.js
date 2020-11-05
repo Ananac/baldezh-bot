@@ -283,10 +283,10 @@ bot.hears(/stonks/gi, ctx => {
     cloudscraper(options).then(html => {
       let $ = cheerio.load(html);
       const usdForex = $(
-        "body > table:nth-child(2) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(8) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)"
+        "body > table:nth-child(4) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(9) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)"
       );
       const euroForex = $(
-        "body > table:nth-child(2) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(9) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(2)"
+        "body > table:nth-child(4) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(9) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(3) > td:nth-child(2)"
       );
 
       ctx.reply("Forex\nUSD " + usdForex.text() + "\nEuro " + euroForex.text());
