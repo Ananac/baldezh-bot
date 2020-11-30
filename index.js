@@ -499,7 +499,7 @@ bot.hears(/да\?/i, ctx => {
 /**
  * Da
  */
-bot.hears(/ да/i, ctx => {
+bot.hears("да", ctx => {
   ctx.replyWithSticker("CAACAgIAAxkBAAEBotVfxMZywJ3eK2LUME0ulQuURzQcfwACCAAE1TcUHo8qx9sRMfUeBA")
 });
 
