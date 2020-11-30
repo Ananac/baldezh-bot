@@ -35,7 +35,7 @@ const characters = [
   "Шикамару Нара",
   "Шино Абураме",
   "Ты Пидор",
-  "Наруто Удзумаки"
+  "Наруто Удзумаки",
 ];
 
 const genders = [
@@ -89,7 +89,7 @@ const genders = [
   "Two-spirit - две души, «двудушный» (без негативной коннотации)",
   "Man",
   "Woman",
-  "Ты пидор"
+  "Ты пидор",
 ];
 
 const bot = new Telegraf(process.env.TOKEN);
@@ -100,13 +100,13 @@ bot.use((ctx, next) => {
     console.log("Response time %sms", ms);
   });
 });
-bot.start(ctx => ctx.reply("Дарова!"));
-bot.help(ctx =>
+bot.start((ctx) => ctx.reply("Дарова!"));
+bot.help((ctx) =>
   ctx.reply(
     '"Кто я из Наруто" - кто ты из Наруто\n' +
-    '"Какой я гендер" - какой ты гендер\n' +
-    '"Stonks" - неточный курс валют\n' +
-    '"Гироскоп *знак зодиака*" - гороскоп на сегодня\n' +
+      '"Какой я гендер" - какой ты гендер\n' +
+      '"Stonks" - неточный курс валют\n' +
+      '"Гироскоп *знак зодиака*" - гороскоп на сегодня\n' +
       '"Дайте мем" - мем из /r/dankmemes\n' +
       // '"Айти" - рандомный коммент с ebanoe.it\n' +
       '"пд" - рандомная картинка из треда со смешными картинками prodota.ru\n' +
@@ -119,7 +119,7 @@ bot.help(ctx =>
 /**
  * Who are you from Naruto
  */
-bot.hears(/кто я из наруто/gi, ctx => {
+bot.hears(/кто я из наруто/gi, (ctx) => {
   console.log("кто я из наруто");
   try {
     const characterNum = Math.floor(Math.random() * characters.length);
@@ -136,7 +136,7 @@ bot.hears(/кто я из наруто/gi, ctx => {
 /**
  * Genders
  */
-bot.hears(/какой я гендер/gi, ctx => {
+bot.hears(/какой я гендер/gi, (ctx) => {
   console.log("какой я гендер");
   try {
     const genderNum = Math.floor(Math.random() * genders.length);
@@ -150,7 +150,7 @@ bot.hears(/какой я гендер/gi, ctx => {
 /**
  * Artem's vacation ends in..
  */
-bot.hears(/артом/gi, ctx => {
+bot.hears(/артом/gi, (ctx) => {
   console.log("артом");
   try {
     today = new Date();
@@ -172,15 +172,15 @@ bot.hears(/артом/gi, ctx => {
 /**
  * Random meme from r/dankmemes/
  */
-bot.hears(/дайте мем/gi, ctx => {
+bot.hears(/дайте мем/gi, (ctx) => {
   console.log("дайте мем");
   try {
     https
-      .get("https://meme-api.herokuapp.com/gimme/dankmemes", res => {
+      .get("https://meme-api.herokuapp.com/gimme/dankmemes", (res) => {
         console.log("statusCode:", res.statusCode);
         console.log("headers:", res.headers);
 
-        res.on("data", d => {
+        res.on("data", (d) => {
           process.stdout.write(d);
           const obj = JSON.parse(d);
           const memeUrl = obj.url;
@@ -188,7 +188,7 @@ bot.hears(/дайте мем/gi, ctx => {
           ctx.replyWithPhoto({ url: memeUrl }, { caption: memeTitle });
         });
       })
-      .on("error", e => {
+      .on("error", (e) => {
         console.error(e);
       });
   } catch (e) {
@@ -200,23 +200,21 @@ bot.hears(/дайте мем/gi, ctx => {
 /**
  * Random meme from prodota
  */
-bot.hears(/пд/i, ctx => {
+bot.hears(/пд/i, (ctx) => {
   console.log("пд");
   try {
-    const scrape = function(callback) {
+    const scrape = function (callback) {
       let page = Math.floor(Math.random() * 1005);
       const options = {
         method: "GET",
-        url: `https://prodota.ru/forum/topic/216714/page/${page}/`
+        url: `https://prodota.ru/forum/topic/216714/page/${page}/`,
       };
-      cloudscraper(options).then(html => {
+      cloudscraper(options).then((html) => {
         let $ = cheerio.load(html);
         const links = $(".ipsType_normal p");
         let pos = 0;
-        $(links).each(function() {
-          const pdMemeUrl = $(this)
-            .find("img")
-            .attr("data-src");
+        $(links).each(function () {
+          const pdMemeUrl = $(this).find("img").attr("data-src");
           if (
             pdMemeUrl !== "" &&
             pdMemeUrl !== undefined &&
@@ -232,11 +230,11 @@ bot.hears(/пд/i, ctx => {
       });
     };
 
-    scrape(function() {
+    scrape(function () {
       randomComment();
     });
 
-    const randomComment = function() {
+    const randomComment = function () {
       const x = Math.floor(Math.random() * pdMemes.length);
       console.log("x = " + x);
       ctx.replyWithPhoto({ url: pdMemes[x] });
@@ -251,14 +249,14 @@ bot.hears(/пд/i, ctx => {
 /**
  * Smart quote
  */
-bot.hears(/стетхем/gi, ctx => {
+bot.hears(/стетхем/gi, (ctx) => {
   try {
     const options = {
       method: "GET",
-      url: `https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=xml&lang=ru`
+      url: `https://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=xml&lang=ru`,
     };
 
-    cloudscraper(options).then(html => {
+    cloudscraper(options).then((html) => {
       let $ = cheerio.load(html);
       const quoteText = $("quotetext");
       const quoteAuthor = $("quoteauthor");
@@ -273,14 +271,14 @@ bot.hears(/стетхем/gi, ctx => {
 /**
  * Currencies
  */
-bot.hears(/stonks/gi, ctx => {
+bot.hears(/stonks/gi, (ctx) => {
   try {
     const options = {
       method: "GET",
-      url: `http://www.profinance.ru/`
+      url: `http://www.profinance.ru/`,
     };
 
-    cloudscraper(options).then(html => {
+    cloudscraper(options).then((html) => {
       let $ = cheerio.load(html);
       const usdForex = $(
         "body > table:nth-child(4) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td:nth-child(6) > table:nth-child(9) > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)"
@@ -300,7 +298,7 @@ bot.hears(/stonks/gi, ctx => {
 /**
  * Gyroscooter
  */
-bot.hears(/гироскоп/i, ctx => {
+bot.hears(/гироскоп/i, (ctx) => {
   try {
     let words = ctx.update.message.text.split(" ");
     let zodiacSign = words[1];
@@ -359,10 +357,10 @@ bot.hears(/гироскоп/i, ctx => {
 
     const options = {
       method: "GET",
-      url: `http://horo.tochka.net/ua/horoscopes/${zodiacUrl}`
+      url: `http://horo.tochka.net/ua/horoscopes/${zodiacUrl}`,
     };
 
-    cloudscraper(options).then(html => {
+    cloudscraper(options).then((html) => {
       let $ = cheerio.load(html);
       const quoteText = $("#Article p");
       ctx.reply(quoteText.text());
@@ -376,12 +374,12 @@ bot.hears(/гироскоп/i, ctx => {
 /**
  * Coronavirus
  */
-bot.hears("вирус", ctx => {
+bot.hears("вирус", (ctx) => {
   try {
     let timeStamp = Math.round(new Date().getTime() / 1000.0);
     https
-      .get(`https://coronavirus.zone/data.json?${timeStamp}`, res => {
-        res.on("data", d => {
+      .get(`https://coronavirus.zone/data.json?${timeStamp}`, (res) => {
+        res.on("data", (d) => {
           process.stdout.write(d);
           const obj = JSON.parse(d);
 
@@ -408,7 +406,7 @@ bot.hears("вирус", ctx => {
           ctx.reply(data);
         });
       })
-      .on("error", e => {
+      .on("error", (e) => {
         console.error(e);
       });
   } catch (e) {
@@ -420,27 +418,25 @@ bot.hears("вирус", ctx => {
 /**
  * Random comment from ebanoe.it
  */
-bot.hears(/айти/i, ctx => {
+bot.hears(/айти/i, (ctx) => {
   console.log("айти");
   const cloudscraperSsl = require("cloudscraper").defaults({
     agentOptions: {
-      ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256"
-    }
+      ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256",
+    },
   });
   try {
     const options = {
       method: "GET",
-      url: "https://ebanoe.it/2019/10/06/nerds-essense/"
+      url: "https://ebanoe.it/2019/10/06/nerds-essense/",
     };
 
-    const scrape = function(callback) {
-      cloudscraperSsl(options).then(html => {
+    const scrape = function (callback) {
+      cloudscraperSsl(options).then((html) => {
         let $ = cheerio.load(html);
         const links = $(".comment-body p");
-        $(links).each(function(i, link) {
-          const comment = $(this)
-            .contents()
-            .text();
+        $(links).each(function (i, link) {
+          const comment = $(this).contents().text();
           if (comment !== undefined && comment !== "") {
             comments[i] = comment;
           }
@@ -449,11 +445,11 @@ bot.hears(/айти/i, ctx => {
       });
     };
 
-    scrape(function() {
+    scrape(function () {
       randomComment();
     });
 
-    const randomComment = function() {
+    const randomComment = function () {
       const x = Math.floor(Math.random() * comments.length);
       if (comments[x] === undefined || comments[x] === "") {
         console.log("Empty comment, randomming new...");
@@ -471,47 +467,52 @@ bot.hears(/айти/i, ctx => {
 /**
  * Say goodbye
  */
-bot.hears(/покеда/gi, ctx => ctx.reply("До свидания"));
-bot.hears(/до свидания/gi, ctx => ctx.reply("Покеда"));
+bot.hears(/покеда/gi, (ctx) => ctx.reply("До свидания"));
+bot.hears(/до свидания/gi, (ctx) => ctx.reply("Покеда"));
 
 /**
  * Quakoosha
  */
-bot.hears(/Quakoosha/gi, ctx =>
+bot.hears(/Quakoosha/gi, (ctx) =>
   ctx.replyWithSticker("CAADBAADQAADL9_4CQr9fwscIkInFgQ")
 );
 
 /**
  * Marginal
  */
-bot.hears(/маргинал/gi, ctx =>
+bot.hears(/маргинал/gi, (ctx) =>
   ctx.replyWithPhoto({ source: `${__dirname}/img/marginal.jpg` })
 );
 
 /**
  * Da
  */
-bot.hears(/да\?/i, ctx => {
-  const timer = ms => new Promise(res => setTimeout(res, ms));
-  timer(3000).then(_ => ctx.reply("да"));
+bot.hears(/да\?/i, (ctx) => {
+  const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+  timer(3000).then((_) => ctx.reply("да"));
 });
 
 /**
  * Da
  */
-bot.hears("да", ctx => {
-  ctx.replyWithSticker("CAACAgIAAxkBAAEBotVfxMZywJ3eK2LUME0ulQuURzQcfwACCAAE1TcUHo8qx9sRMfUeBA")
+bot.hears("да", (ctx) => {
+  let x = Math.random();
+  if (x > 0.7) {
+    ctx.replyWithSticker(
+      "CAACAgIAAxkBAAEBotVfxMZywJ3eK2LUME0ulQuURzQcfwACCAAE1TcUHo8qx9sRMfUeBA"
+    );
+  }
 });
 
 /**
  * Sorry
  */
-bot.hears("Извините", ctx => ctx.reply("Извинил"));
+bot.hears("Извините", (ctx) => ctx.reply("Извинил"));
 
 /**
  * Kavo
  */
-bot.hears("каво", ctx =>
+bot.hears("каво", (ctx) =>
   ctx.replyWithPhoto({ source: `${__dirname}/img/kavo.jpg` })
 );
 
