@@ -497,6 +497,13 @@ bot.hears(/да\?/i, ctx => {
 });
 
 /**
+ * Da
+ */
+bot.hears(/ да/i, ctx => {
+  ctx.replyWithSticker("CAACAgIAAxkBAAEBotVfxMZywJ3eK2LUME0ulQuURzQcfwACCAAE1TcUHo8qx9sRMfUeBA")
+});
+
+/**
  * Sorry
  */
 bot.hears("Извините", ctx => ctx.reply("Извинил"));
