@@ -108,7 +108,7 @@ bot.help((ctx) =>
       // '"Stonks" - неточный курс валют\n' +
       '"Гироскоп *знак зодиака*" - гороскоп на сегодня\n' +
       '"Дайте мем" - мем из /r/dankmemes\n' +
-      // '"Айти" - рандомный коммент с ebanoe.it\n' +
+      '"Айти" - рандомный коммент с ebanoe.it\n' +
       '"пд" - рандомная картинка из треда со смешными картинками prodota.ru\n' +
       '"Quakoosha" - Quakoosha\n' +
       '"каво" - каво\n' +
@@ -428,7 +428,7 @@ bot.hears(/айти/i, (ctx) => {
   try {
     const options = {
       method: "GET",
-      url: "https://ebanoe.it/2019/10/06/nerds-essense/",
+      url: "https://ebanoe.it/2020/11/17/nerds-life/",
     };
 
     const scrape = function (callback) {
