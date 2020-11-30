@@ -104,15 +104,15 @@ bot.start((ctx) => ctx.reply("Дарова!"));
 bot.help((ctx) =>
   ctx.reply(
     '"Кто я из Наруто" - кто ты из Наруто\n' +
-      '"Какой я гендер" - какой ты гендер\n' +
-      // '"Stonks" - неточный курс валют\n' +
-      '"Гироскоп *знак зодиака*" - гороскоп на сегодня\n' +
-      '"Дайте мем" - мем из /r/dankmemes\n' +
-      '"Айти" - рандомный коммент с ebanoe.it\n' +
-      '"пд" - рандомная картинка из треда со смешными картинками prodota.ru\n' +
-      '"Quakoosha" - Quakoosha\n' +
-      '"каво" - каво\n' +
-      '"Стетхем" - цитаты от Стетхема\n'
+    '"Какой я гендер" - какой ты гендер\n' +
+    // '"Stonks" - неточный курс валют\n' +
+    '"Гироскоп *знак зодиака*" - гороскоп на сегодня\n' +
+    '"Дайте мем" - мем из /r/dankmemes\n' +
+    // '"Айти" - рандомный коммент с ebanoe.it\n' +
+    '"пд" - рандомная картинка из треда со смешными картинками prodota.ru\n' +
+    '"Quakoosha" - Quakoosha\n' +
+    '"каво" - каво\n' +
+    '"Стетхем" - цитаты от Стетхема\n'
   )
 );
 
@@ -155,8 +155,8 @@ bot.hears(/артом/gi, (ctx) => {
   try {
     today = new Date();
     const artemIsBack = new Date(2020, 7, 31);
-    const one_day = 1000 * 60 * 60 * 24;
-    const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / one_day);
+    const oneDay = 1000 * 60 * 60 * 24;
+    const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / oneDay);
     ctx.reply(
       "Артем вернется в Коноху через " +
         days +
