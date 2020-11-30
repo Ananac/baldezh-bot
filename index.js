@@ -428,7 +428,7 @@ bot.hears(/айти/i, (ctx) => {
   try {
     const options = {
       method: "GET",
-      url: "https://ebanoe.it/2020/11/17/nerds-life/",
+      url: "https://ebanoe.it/2019/10/06/nerds-essense/",
     };
 
     const scrape = function (callback) {
