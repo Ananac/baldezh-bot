@@ -207,7 +207,7 @@ bot.hears(/пд/i, (ctx) => {
       let page = Math.floor(Math.random() * 1005);
       const options = {
         method: "GET",
-        url: `https://prodota.ru/forum/topic/219717/page/${page}/`,
+        url: `https://prodota.ru/forum/topic/216714/page/${page}/`,
       };
       cloudscraper(options).then((html) => {
         let $ = cheerio.load(html);
