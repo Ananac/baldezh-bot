@@ -204,7 +204,7 @@ bot.hears(/пд/i, (ctx) => {
   console.log("пд");
   try {
     const scrape = function (callback) {
-      let page = Math.floor(Math.random() * 140);
+      let page = Math.floor(Math.random() * 150);
       const options = {
         method: "GET",
         url: `https://prodota.ru/forum/topic/219717/page/${page}/`,
@@ -335,6 +335,7 @@ bot.hears(/гироскоп/i, (ctx) => {
         zodiacUrl = "scorpio";
         break;
       case "стрілець":
+      case "стрiлець":
       case "стрелец":
         zodiacUrl = "sagittarius";
         break;
