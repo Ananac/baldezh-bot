@@ -176,7 +176,7 @@ bot.hears(/артом/gi, (ctx) => {
   console.log("донис");
   try {
     today = new Date();
-    const artemIsBack = new Date(2020, 9, 2);
+    const artemIsBack = new Date(2019, 9, 2);
     const oneDay = 1000 * 60 * 60 * 24;
     const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / oneDay);
     ctx.reply(
