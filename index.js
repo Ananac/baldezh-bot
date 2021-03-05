@@ -170,6 +170,28 @@ bot.hears(/артом/gi, (ctx) => {
 });
 
 /**
+ * Artem's vacation ends in..
+ */
+ bot.hears(/артом/gi, (ctx) => {
+  console.log("донис");
+  try {
+    today = new Date();
+    const artemIsBack = new Date(2020, 9, 2);
+    const oneDay = 1000 * 60 * 60 * 24;
+    const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / oneDay);
+    ctx.reply(
+      "Денис вернется в Коноху через " +
+        days +
+        " " +
+        pluralize(days, "день", "дня", "дней")
+    );
+  } catch (e) {
+    console.error(e);
+    ctx.reply("Что-то сломалось");
+  }
+});
+
+/**
  * Random meme from r/dankmemes/
  */
 bot.hears(/дайте мем/gi, (ctx) => {
