@@ -170,9 +170,9 @@ bot.hears(/артом/gi, (ctx) => {
 });
 
 /**
- * Artem's vacation ends in..
+ * Donis's vacation ends in..
  */
- bot.hears(/артом/gi, (ctx) => {
+ bot.hears(/донис/gi, (ctx) => {
   console.log("донис");
   try {
     today = new Date();
