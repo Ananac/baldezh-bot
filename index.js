@@ -139,8 +139,8 @@ bot.hears(/кто я из наруто/gi, (ctx) => {
 bot.hears(/какой я гендер/gi, (ctx) => {
   console.log("какой я гендер");
   try {
-    const genderNum = Math.floor(Math.random() * genders.length);
-    ctx.reply(genders[genderNum]);
+    const genderNum = Math.floor(Math.random() * 64);
+    ctx.replyWithPhoto({ source: `${__dirname}/img/g/${genderNum}.jpg` });
   } catch (e) {
     console.error(e);
     ctx.reply("Что-то сломалось");
@@ -159,9 +159,9 @@ bot.hears(/артом/gi, (ctx) => {
     const days = Math.ceil((artemIsBack.getTime() - today.getTime()) / oneDay);
     ctx.reply(
       "Артем вернется в Коноху через " +
-        days +
-        " " +
-        pluralize(days, "день", "дня", "дней")
+      days +
+      " " +
+      pluralize(days, "день", "дня", "дней")
     );
   } catch (e) {
     console.error(e);
