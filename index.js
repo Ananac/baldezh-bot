@@ -96,13 +96,13 @@ const genders = [
 
 const bot = new Bot(process.env.TELEGRAM_TOKEN || "");
 // Start the server
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "prod") {
   // Use Webhooks for the production server
   const app = express();
   app.use(express.json());
   app.use(webhookCallback(bot, "express"));
 
-  const PORT = process.env.PORT || 3000;
+  const PORT = process.env.PORT || 8443;
   app.listen(PORT, () => {
     console.log(`Bot listening on port ${PORT}`);
   });
