@@ -1,4 +1,4 @@
-const Telegraf = require("telegraf");
+import { Telegraf } from "telegraf";
 const https = require("https");
 const cheerio = require("cheerio");
 const pluralize = require("numeralize-ru").pluralize;
@@ -414,12 +414,12 @@ bot.on(message("да"), (ctx) => {
 /**
  * Sorry
  */
-bot.on(message("Извините)"), (ctx) => ctx.reply("Извинил"));
+bot.on("Извините)", (ctx) => ctx.reply("Извинил"));
 
 /**
  * Kavo
  */
-bot.on(message("каво"), (ctx) =>
+bot.on("каво", (ctx) =>
   ctx.replyWithPhoto({ source: `${__dirname}/img/kavo.jpg` })
 );
 
