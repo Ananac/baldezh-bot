@@ -1,8 +1,10 @@
-const Telegraf = require("telegraf");
 const https = require("https");
 const cheerio = require("cheerio");
 const pluralize = require("numeralize-ru").pluralize;
 const cloudscraper = require("cloudscraper");
+import { Bot } from "grammy";
+import { webhookCallback } from "grammy";
+import express from "express";
 
 let comments = [];
 let pdMemes = [];
@@ -92,15 +94,23 @@ const genders = [
   "Ты пидор",
 ];
 
-const bot = new Telegraf(process.env.TOKEN);
-bot.use((ctx, next) => {
-  const start = new Date();
-  return next(ctx).then(() => {
-    const ms = new Date() - start;
-    console.log("Response time %sms", ms);
+const bot = new Bot(process.env.TELEGRAM_TOKEN || "");
+// Start the server
+if (process.env.NODE_ENV === "production") {
+  // Use Webhooks for the production server
+  const app = express();
+  app.use(express.json());
+  app.use(webhookCallback(bot, "express"));
+
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Bot listening on port ${PORT}`);
   });
-});
-bot.start((ctx) => ctx.reply("Дарова!"));
+} else {
+  // Use Long Polling for development
+  bot.start();
+}
+
 bot.help((ctx) =>
   ctx.reply(
     '"Кто я из Наруто" - кто ты из Наруто\n' +
