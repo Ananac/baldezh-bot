@@ -548,4 +548,4 @@ bot.hears("каво", (ctx) =>
 //   )
 // );
 
-bot.launch();
+bot.startWebhook(process.env.CYCLIC_URL, null, 8443);
