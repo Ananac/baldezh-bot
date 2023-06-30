@@ -93,7 +93,7 @@ const genders = [
   "Ты пидор",
 ];
 
-const bot = new Telegraf(process.env.TOKEN);
+const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
 bot.use((ctx, next) => {
   const start = new Date();
   return next(ctx).then(() => {
