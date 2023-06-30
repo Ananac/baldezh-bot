@@ -432,4 +432,4 @@ bot.on(message("каво"), (ctx) =>
 //   )
 // );
 
-bot.startWebhook(process.env.CYCLIC_URL, null, process);
+bot.startWebhook(process.env.CYCLIC_URL, null, 8443);
