@@ -1,4 +1,4 @@
-const Telegraf = require("telegraf");
+import { Telegraf } from "telegraf";
 const https = require("https");
 const cheerio = require("cheerio");
 const pluralize = require("numeralize-ru").pluralize;
