@@ -10,7 +10,7 @@
     "https": "^1.0.0",
     "numeralize-ru": "^1.0.1",
     "request": "^2.88.2",
-    "telegraf": "^3.38.0"
+    "telegraf": "^4.12.2"
   },
   "devDependencies": {},
   "scripts": {
