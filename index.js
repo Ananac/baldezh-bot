@@ -402,7 +402,7 @@ bot.on(/да\?/i, (ctx) => {
 /**
  * Dimas
  */
-bot.on("да", (ctx) => {
+bot.on(message("да"), (ctx) => {
   let x = Math.random();
   if (x > 0.7) {
     ctx.replyWithSticker(
